@@ -1,0 +1,441 @@
+
+<div class="button-container">
+  <button 
+    routerLink="/main-table"
+    type="button" >
+          Home
+  </button>
+  <button       
+    routerLink="/history"
+    type="button" 
+  >
+    History
+  </button>
+
+</div>
+
+
+<form action="" class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Blank</th>
+            <th>Lead Chef/Chef/Sous Chef</th>
+            <th>Country</th>
+          </tr>
+          <tr>
+            <td>T-5 Hours</td>
+            <td>Arrival Basics</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="arrivalBasics" #formArrivalBasics="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="power-on-lights" id="power-on-lights" [(ngModel)]="mainList.arrivalBasics.powerOnLights" #powerOnLights="ngModel" [disabled]="instance">
+                  <label for="power-on-lights">Power on lights</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="power-on-kitchen-ac-only" id="power-on-kitchen-ac-only" [(ngModel)]="mainList.arrivalBasics.powerOnKitchenAcOnly" [disabled]="instance">
+                  <label for="power-on-kitchen-ac-only">Power on Kitchen AC ONLY</label>
+                </div>
+              </div>
+              <div class="info">
+                <p>Up arrival, Basic house keeping tasks should be done</p>
+                <p>Turn on water, gas, lights, AC</p>
+                <br>
+                <p>Send daily report on meat supplies (reference the meat report)</p>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>T-4 Hrs 45 M</td>
+            <td>Broth Prep Beef Chicken Vegan</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="brothPrep" #formBrothPrep="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="washMeats" id="washMeats" [(ngModel)]="mainList.brothPrep.washMeats" [disabled]="instance">
+                  <label for="washMeats">Wash meats for broth and place on stove</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="fillPots" id="fillPots" [(ngModel)]="mainList.brothPrep.fillPots" [disabled]="instance">
+                  <label for="fillPots">Fill pots with water and other required vegetables and condiments</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepVegetables" id="prepVegetables" [(ngModel)]="mainList.brothPrep.prepVegetables" [disabled]="instance">
+                  <label for="prepVegetables">Prep vegetables for a small batch of vege broth</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="monitorPots" id="monitorPots" [(ngModel)]="mainList.brothPrep.monitorPots" [disabled]="instance">
+                  <label for="monitorPots">Monitor pots as the broth comes to a boil, remove the impurities then begin the final boil</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="boilBroths" id="boilBroths" [(ngModel)]="mainList.brothPrep.boilBroths" [disabled]="instance">
+                  <label for="boilBroths">The broths should boil for 8-12hrs. Exceptions made for the broth served on the lunch shift</label>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>T-4 Hrs</td>
+            <td>Prep Proteins</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="prepProteins" #formPrepProteins="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="prepareChickenChashu" id="prepareChickenChashu" [(ngModel)]="mainList.prepProteins.prepareChickenChashu" [disabled]="instance">
+                  <label for="prepareChickenChashu">Prepare chicken for Chashu</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepareChickenKatsu" id="prepareChickenKatsu" [(ngModel)]="mainList.prepProteins.prepareChickenKatsu" [disabled]="instance">
+                  <label for="prepareChickenKatsu">Prepare chicken for Katsu</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepareShrimpTempura" id="prepareShrimpTempura" [(ngModel)]="mainList.prepProteins.prepareShrimpTempura" [disabled]="instance">
+                  <label for="prepareShrimpTempura">Prepare shrimp for Tempura</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepareShrimpNobu" id="prepareShrimpNobu" [(ngModel)]="mainList.prepProteins.prepareShrimpNobu" [disabled]="instance">
+                  <label for="prepareShrimpNobu">Prepare shrimp for Nobu Bites</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepareSousVideBeef" id="prepareSousVideBeef" [(ngModel)]="mainList.prepProteins.prepareSousVideBeef" [disabled]="instance">
+                  <label for="prepareSousVideBeef">Prepare and Sous Vide beef, duck and lamb for grilling</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepSkewers" id="prepSkewers" [(ngModel)]="mainList.prepProteins.prepSkewers" [disabled]="instance">
+                  <label for="prepSkewers">Prep skewers for yakitori</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepMeatOrange" id="prepMeatOrange" [(ngModel)]="mainList.prepProteins.prepMeatOrange" [disabled]="instance">
+                  <label for="prepMeatOrange">Prep meat for Orange and Sesame Chicken</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="seasonSalmon" id="seasonSalmon" [(ngModel)]="mainList.prepProteins.seasonSalmon" [disabled]="instance">
+                  <label for="seasonSalmon">Season 4-6 pieces of Salmon</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepWings" id="prepWings" [(ngModel)]="mainList.prepProteins.prepWings" [disabled]="instance">
+                  <label for="prepWings">Prep Wings</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepFish" id="prepFish" [(ngModel)]="mainList.prepProteins.prepFish" [disabled]="instance">
+                  <label for="prepFish">Prep Fish for bites</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="prepTofu" id="prepTofu" [(ngModel)]="mainList.prepProteins.prepTofu" [disabled]="instance">
+                  <label for="prepTofu">Prep Tofu for deep frying</label>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>T-2 Hrs</td>
+            <td>Toppings for Ramen, fried rice, Sushi/Rolls</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="toppingsPrep" #formToppingsPrep="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="blanchChoy" id="blanchChoy" [(ngModel)]="mainList.toppingsPrep.blanchChoy" [disabled]="instance">
+                  <label for="blanchChoy">Blanch Choy, boil & pickle, eggs, prep Carrots, chives, ginger, garlic, onions, kombu, corn and other seasonal toppings</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="friedRicePrep" id="friedRicePrep" [(ngModel)]="mainList.toppingsPrep.friedRicePrep" [disabled]="instance">
+                  <label for="friedRicePrep">For Fried Rice prep corn, dice, carrots, diced bell peppers, slice chives, onion, garlic, ginger</label>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Prep Stir fry veg</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="stirFryVeg" #formStirFryVeg="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="stirFryVeg" id="stirFryVeg" [(ngModel)]="mainList.stirFryVeg.stirFryVeg" [disabled]="instance">
+                  <label for="stirFryVeg">Prep broccoli, cauliflower, bell peppers, choy, cabbage, onions, garlic, ginger</label>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Prep veg for salad</td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="saladPrep" #formSaladPrep="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="prepSaladVege" id="prepSaladVege" [(ngModel)]="mainList.saladPrep.prepSaladVeg" [disabled]="instance">
+                  <label for="prepSaladVege">Prep by thoroughly washing and pat drying lettuce, tomatoes, cucumber, long cut carrots</label>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="input-container form-group" ngModelGroup="saladPrepServer" #formSaladPrepServer="ngModelGroup">
+                <div class="form-input">
+                  <input type="checkbox" name="stirSaladVegeServerLights" id="stirSaladVegeServerLights" [(ngModel)]="mainList.saladPrepServer.stirSaladVegeServerLights" [disabled]="instance">
+                  <label for="stirSaladVegeServerLights">Turn on lights and 1 air conditioner</label>
+                </div>
+                <div class="form-input">
+                  <input type="checkbox" name="stirSaladVegeServerRemove" id="stirSaladVegeServerRemove" [(ngModel)]="mainList.saladPrepServer.stirSaladVegServerRemove" [disabled]="instance">
+                  <label for="stirSaladVegeServerRemove">Remove bar items from noodle freeze to wine chiller</label>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+      <tr>
+        <td>T-1 Hr</td>
+        <td>Prep Sauces and Open service area</td>
+        <td>
+          <div class="input-container form-group" ngModelGroup="prepSauces" #formPrepSauces="ngModelGroup">
+            <div class="form-input">
+              <input type="checkbox" name="senseiSauce" id="senseiSauce" [(ngModel)]="mainList.prepSauces.senseiSauce" [disabled]="instance">
+              <label for="senseiSauce">Make Sensei sauce for wings</label>
+            </div>
+
+            <div class="form-input">
+                <input type="checkbox" name="finishingSauce" id="finishingSauce" [(ngModel)]="mainList.prepSauces.finishingSauce" [disabled]="instance">
+                <label for="finishingSauce">Prep finishing sauce for Lamb Chops</label>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="input-container form-group" ngModelGroup="prepSaucesServer" #formPrepSaucesServer="ngModelGroup">
+            <div class="form-input">
+              <input type="checkbox" name="coconutWater" id="coconutWater" [(ngModel)]="mainList.prepSaucesServer.coconutWater" [disabled]="instance">
+              <label for="coconutWater">Ensure coconut water is available to serve</label>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>Clean restaurant for opening</td>
+        <td>
+         
+        </td>
+        <td>
+          <div class="input-container form-group" ngModelGroup="cleanRestaurantServer" #formCleanRestaurantServer="ngModelGroup">
+            <div class="form-input">
+                <input type="checkbox" name="sweep" id="sweep" [(ngModel)]="mainList.cleanRestaurantServer.sweep" [disabled]="instance">
+                <label for="sweep">Thoroughly sweep</label>
+            </div>
+            <div class="form-input">
+                <input type="checkbox" name="wipeTables" id="wipeTables" [(ngModel)]="mainList.cleanRestaurantServer.wipeTables" [disabled]="instance">
+                <label for="wipeTables">Using a damp cloth washed in soap and warm water solution; wipe and dry all tables, chairs and other furniture</label>
+            </div>
+            <div class="form-input">
+                <input type="checkbox" name="fixFurniture" id="fixFurniture" [(ngModel)]="mainList.cleanRestaurantServer.fixFurniture" [disabled]="instance">
+                <label for="fixFurniture">Fix furniture and be ready to open</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td></td>
+        <td>Aromatics Dessert</td>
+        <td>
+            <div class="input-container form-group" ngModelGroup="aromatics" #aromatics="ngModelGroup">
+                <div class="form-input">
+                    <input type="checkbox" name="prepAromatics" id="prepAromatics" [(ngModel)]="mainList.aromatics.prepAromatics" [disabled]="instance">
+                    <label for="prepAromatics">Prep for aromatics</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" name="readyDesserts" id="readyDesserts" [(ngModel)]="mainList.aromatics.readyDesserts" [disabled]="instance">
+                    <label for="readyDesserts">Ready Desserts</label>
+                </div>
+              </div>
+        </td>
+        <td>
+          <div class="input-container form-group" ngModelGroup="aromaticsServer" #aromaticsServer="ngModelGroup">
+            <div class="form-input">
+                <input type="checkbox" name="cleanGlass" id="cleanGlass" [(ngModel)]="mainList.aromaticsServer.cleanGlass" [disabled]="instance">
+                <label for="cleanGlass">Clean Front glass on both sides to remove any prints, dust and scruffs</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>T -30 Mins</td>
+        <td>FInal pre opening rush</td>
+        <td>
+            <div class="input-container form-group" ngModelGroup="finalPrep" #finalPrep="ngModelGroup">
+                <div class="form-input">
+                    <input type="checkbox" name="informServiceTeam" id="informServiceTeam" [(ngModel)]="mainList.finalPrep.informServiceTeam" [disabled]="instance">
+                    <label for="informServiceTeam">CRITICAL: Inform the service team on what items are not available on the meu for the specific day</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" name="readyStation" id="readyStation" [(ngModel)]="mainList.finalPrep.readyStation" [disabled]="instance">
+                    <label for="readyStation">Ensure that the Work Station, Staging area and Assembly lines are all ready to go.</label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="input-container form-group" ngModelGroup="finalPrepServer" #finalPrepServer="ngModelGroup">
+                <div class="form-input">
+                    <input type="checkbox" name="turnOnTv" id="turnOnTv" [(ngModel)]="mainList.finalPrepServer.turnOnTv" [disabled]="instance">
+                    <label for="turnOnTv">Turn on TV and test audio equipment</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" name="openingStandup" id="openingStandup" [(ngModel)]="mainList.finalPrepServer.openingStandup" [disabled]="instance">
+                    <label for="openingStandup">Run opening Standup to discuss plans for the day</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" name="listUnavailableItems" id="listUnavailableItems" [(ngModel)]="mainList.finalPrepServer.listUnavailableItems" [disabled]="instance">
+                    <label for="listUnavailableItems">CRITICAL: Make a list of the items that won't be available for the day</label>
+                </div>
+
+            </div>
+
+        </td>
+      </tr>
+    </table>
+
+
+    <div class="cashier input-container form-group" ngModelGroup="cashierCheckList" >
+        <h1>Cashier CheckList</h1>
+        <div class="form-input">
+            <input type="checkbox" name="checkCash" id="checkCash" [(ngModel)]="mainList.cashierChecklist.checkCash" [disabled]="instance">
+            <label for="checkCash">Check and record all cash in register into log book</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="ensurePrinter" id="ensurePrinter" [(ngModel)]="mainList.cashierChecklist.ensurePrinter" [disabled]="instance">
+            <label for="ensurePrinter">Ensure on spare paper roll is nest to the printer</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="ensureChange" id="ensureChange" [(ngModel)]="mainList.cashierChecklist.ensureChange" [disabled]="instance">
+            <label for="ensureChange">Ensure that there is adequate change and alert the manager if any is needed</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="tidyWorkstation" id="tidyWorkstation" [(ngModel)]="mainList.cashierChecklist.tidyWorkstation" [disabled]="instance">
+            <label for="tidyWorkstation">Ensure the worksation is tidy. Includes Cash register, counter, tablet</label>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="service input-container form-group" ngModelGroup="stockOpeningCheckList">
+        <h1>Service Opening Stock Checklist</h1>
+        <div class="form-input">
+            <input type="checkbox" name="checkUtensils" id="checkUtensils" [(ngModel)]="mainList.stockOpeningCheckList.checkUtensils" [disabled]="instance">
+            <label for="checkUtensils">Take out cups, bbowls, boxes, straws</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="towels" id="towels" [(ngModel)]="mainList.stockOpeningCheckList.towels" [disabled]="instance">
+            <label for="towels">Arrange towels, knives and fork</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="coldCups" id="coldCups" [(ngModel)]="mainList.stockOpeningCheckList.coldCups" [disabled]="instance">
+            <label for="coldCups">Cold Cups - *decide on qty*</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="straws" id="straws" [(ngModel)]="mainList.stockOpeningCheckList.straws" [disabled]="instance">
+            <label for="straws">Atleast 2 packs of straws in front cupboard</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="tissuesPacks" id="tissuesPacks" [(ngModel)]="mainList.stockOpeningCheckList.tissuesPacks" [disabled]="instance">
+            <label for="tissuesPacks">Atleast 2 packs of tissues each</label>
+        </div>
+        <div class="form-input">
+            <input type="checkbox" name="tissues" id="tissues" [(ngModel)]="mainList.stockOpeningCheckList.tissues" [disabled]="instance">
+            <label for="tissues">Atleast 100 of tissues each</label>
+        </div>
+        <div class="form-input">
+            <input type="checkbox" name="condiments" id="condiments" [(ngModel)]="mainList.stockOpeningCheckList.condiments" [disabled]="instance">
+            <label for="condiments">Condiments - Sweetener, powdered milk, cream soda, thai tea, Matcha powdere etc - *to decide min level*</label>
+        </div>
+        <div class="form-input">
+            <input type="checkbox" name="teaBags" id="teaBags" [(ngModel)]="mainList.stockOpeningCheckList.teaBags" [disabled]="instance">
+            <label for="teaBags">Sencha aTea bags - ensure that all tea bag trays are stocked - *to decide on how much*</label>
+        </div>
+
+        <div class="form-input">
+            <input type="checkbox" name="takeoutBox" id="takeoutBox" [(ngModel)]="mainList.stockOpeningCheckList.takeoutBox" [disabled]="instance">
+            <label for="takeoutBox">Transparent larger takeout box - *decide on qty*</label>
+        </div>
+        <div class="form-input">
+            <input type="checkbox" name="beverages" id="beverages" [(ngModel)]="mainList.stockOpeningCheckList.beverages" [disabled]="instance">
+            <label for="beverages">Sparkling water, Juice, garnishes, fruits, alcohol from storage</label>
+        </div>
+        <div class="form-input">
+            <input type="checkbox" name="ramenBar" id="ramenBar" [(ngModel)]="mainList.stockOpeningCheckList.ramenBar" [disabled]="instance">
+            <label for="ramenBar">Gas for torch and ramen bar related items</label>
+        </div>
+
+        <div class="info-container">
+          <p>Ensure these items are organised and properly packed</p>
+          <p><strong>*Replenish all that are low as necessary from the manager on duty</strong></p>  
+        </div>
+    </div>
+
+    <div class="signature-section-container">
+        <div class="signature-section"  ngModelGroup="signature">
+          <div class="signature-container">
+              <div class="title">Kitchen Team</div>
+
+              <div class="input-line">
+                  <label for="kitchenName">Signed</label>
+                  <input type="text" name="kitchenName" id="kitchenName" [(ngModel)]="mainList.signature.kitchenName" [disabled]="instance" required>
+              </div>
+              <div class="input-line">
+                  <label for="kitchenDate">Date</label>
+                  <input  type="date" 
+                          name="kitchenDate" 
+                          id="kitchenDate" 
+                          [(ngModel)]="mainList.signature.kitchenDate" 
+                          [disabled]="instance" 
+                          [value]="mainList.signature.kitchenDate"
+                          required
+                          >
+              </div>
+          </div>
+
+          <div class="signature-container">
+              <div class="title">Service Team</div>
+              <div class="input-line">
+                  <label for="serviceName">Signed</label>
+                  <input  type="text" 
+                          name="serviceName" 
+                          id="serviceName"   
+                          [(ngModel)]="mainList.signature.serviceName" 
+                          [disabled]="instance" required
+                          >
+              </div>
+          
+              <div class="input-line">
+                  <label for="serviceDate">Date</label>
+                  <input 
+                          type="date" 
+                          name="serviceDate" 
+                          id="serviceDate" 
+                          [(ngModel)]="mainList.signature.serviceDate" 
+                          [disabled]="instance" 
+                          [value]="mainList.signature.serviceDate"
+                          required
+                          
+                        >
+              </div>
+          </div>
+      </div>
+      <button type="submit" [disabled]="instance">Submit</button>
+    </div>
+
+    
+  </form>
+  
