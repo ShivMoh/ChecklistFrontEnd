@@ -433,9 +433,21 @@
               </div>
           </div>
       </div>
-      <button type="submit" [disabled]="instance">Submit</button>
-    </div>
 
-    
+      <div class="comment-container">
+        <label for="comment">Comments:</label>
+        <textarea 
+          name="comment" 
+          id="" 
+          [disabled]="instance"
+          [(ngModel)]="mainList.comment.comment"
+          >
+        </textarea>
+      </div>
+      <button type="submit" [disabled]="instance">Submit</button>
+       
+    </div>
+  
+   
   </form>
   

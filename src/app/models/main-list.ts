@@ -4,6 +4,7 @@ import { ArrivalBasics } from "./arrival-basics";
 import { BrothPrep } from "./broth-prep";
 import { CashierChecklist } from "./cashier-checklist";
 import { CleanRestaurantServer } from "./clean-restaurant-server";
+import { Comment } from "./comment";
 import { FinalPrep } from "./final-prep";
 import { FinalPrepServer } from "./final-prep-server";
 import { PrepProteins } from "./prep-proteins";
@@ -39,7 +40,7 @@ export interface MainList {
     stockOpeningCheckList: StockOpeningCheckList;
 
     signature : Signature;
-    
+    comment : Comment;    
     date : Date;
 
 }

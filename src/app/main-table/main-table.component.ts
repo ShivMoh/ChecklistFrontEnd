@@ -4,6 +4,7 @@ import { MainServiceService } from '../services/main-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Visitor } from '@angular/compiler';
 
 @Component({
   selector: 'app-main-table',
@@ -106,7 +107,9 @@ export class MainTableComponent {
       kitchenDate: '',
       serviceDate: ''
     },
-   
+    comment: {
+      comment: ""
+    },   
     date: new Date()
   };
   
