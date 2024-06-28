@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MainList } from '../models/main-list';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,12 +10,12 @@ export class MainServiceService {
 
   constructor(private http: HttpClient) { }
 
-  createList(mainList : MainList) : Observable<MainList> {
-    return this.http.post<MainList>("http://localhost:5264/api/controller/Create", mainList);
+  createList(mainList : any) : Observable<any> {
+    return this.http.post<any>("http://localhost:5264/api/controller/Create", mainList);
   }
 
-  getAllLists() : Observable<MainList[]> {
-    return this.http.post<MainList[]>("http://localhost:5264/api/controller/GetAllLists", {});
+  getAllLists() : Observable<any[]> {
+    return this.http.post<any[]>("http://localhost:5264/api/controller/GetAllLists", {});
   }
 
 

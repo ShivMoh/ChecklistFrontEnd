@@ -1,0 +1,47 @@
+
+<div class="container"
+    (fileDropped)="onFileDropped($event)"
+    appDragAndDrop
+    (stateStyleEmitter)="updateStateStyle($event)"
+    [ngStyle]="stateStyle"
+
+    >
+  <input
+    type="file"
+    ngModel
+    #fileDropRef="ngModel"
+    id="fileDropRef"
+    multiple
+    accept=".pdf,.png,.jpg,.jpeg"
+    (change)="fileBrowseHandler($event.target)"
+    />
+  <h3>Drag and drop your files here</h3>
+  <h3>OR</h3>
+  <label for="fileDropRef">
+    Browse Files
+  </label>
+</div>
+
+
+  <div class="files-list">
+    <div class="single-file" *ngFor="let file of files; let i = index">
+      <mat-icon>
+        insert_drive_file
+      </mat-icon>
+      <div class="info">
+        <a class="name" [href]="fileUrls[i]" [download]="file?.name" >
+          {{file?.name}}
+        </a>
+        <p class="size">
+          {{ formatBytes(file?.size) }}
+        </p>
+        <app-progress-bar [progress]="file?.progress"></app-progress-bar>
+      </div>
+
+      <div (click)="deleteFile(i)" class="delete">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </div>
+    </div>
+  </div>

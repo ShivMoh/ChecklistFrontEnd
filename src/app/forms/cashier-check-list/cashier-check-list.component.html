@@ -1,0 +1,78 @@
+
+
+
+<form action="" class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+   
+      <div class="section-container form-group">
+        <p class="section-title">Cashier Check List</p>
+  
+        <table>
+            <tr>
+              <th>Task Description</th>
+              <th>Completed</th>
+            </tr>
+                
+            <tr>
+              <td><label for="checkCash">Check and record all cash in register into log book</label></td>
+              <td> <input type="checkbox" name="checkCash" id="checkCash" [(ngModel)]="mainList.checkCash" [disabled]="instance"></td>
+            </tr>
+            <tr>
+                <td>  <label for="ensurePrinter">Ensure on spare paper roll is nest to the printer</label></td>
+                <td>     <input type="checkbox" name="ensurePrinter" id="ensurePrinter" [(ngModel)]="mainList.ensurePrinter" [disabled]="instance"></td>
+              </tr>
+            <tr>
+                <td>  <label for="ensureChange">Ensure that there is adequate change and alert the manager if any is needed</label></td>
+                <td>    <input type="checkbox" name="ensureChange" id="ensureChange" [(ngModel)]="mainList.ensureChange" [disabled]="instance"></td>
+            </tr>
+            <tr>
+                <td>  <label for="tidyWorkstation">Ensure the worksation is tidy. Includes Cash register, counter, tablet</label></td>
+                <td>    <input type="checkbox" name="tidyWorkstation" id="tidyWorkstation" [(ngModel)]="mainList.tidyWorkstation" [disabled]="instance"></td>
+            </tr>
+        </table>      
+      </div>
+  
+     
+      
+      <div class="ending-section">
+        <div class="comment-container">
+            <label for="comment">Comments:</label>
+            <textarea 
+              name="comment" 
+              id="" 
+              [disabled]="instance"
+              [(ngModel)]="mainList.comment.comment"
+              >
+            </textarea>
+          </div>
+        
+
+          <div class="signature-section-container">
+              <div class="signature-section"  ngModelGroup="signature">
+                <div class="signature-container">
+                    <div class="title">Sign Here</div>
+      
+                    <div class="input-line">
+                        <label for="kitchenName">Signed</label>
+                        <input type="text" name="kitchenName" id="kitchenName" [(ngModel)]="mainList.signature.name" [disabled]="instance" required>
+                    </div>
+                    <div class="input-line">
+                        <label for="kitchenDate">Date</label>
+                        <input  type="date" 
+                                name="kitchenDate" 
+                                id="kitchenDate" 
+                                [(ngModel)]="mainList.signature.date" 
+                                [disabled]="instance" 
+                                [value]="mainList.signature.date"
+                                required
+                                >
+                    </div>
+                  </div>
+              </div>
+          </div>
+          
+          <button type="submit" [disabled]="instance">Submit</button>
+      </div>
+       
+     
+    </form>
+    

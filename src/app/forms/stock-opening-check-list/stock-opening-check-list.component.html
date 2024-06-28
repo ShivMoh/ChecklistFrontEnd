@@ -1,0 +1,103 @@
+
+
+
+<form action="" class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+   
+    <div class="section-container form-group">
+      <p class="section-title">Cashier Check List</p>
+
+      <table>
+          <tr>
+            <th>Task Description</th>
+            <th>Completed</th>
+          </tr>
+              
+          <tr>
+            <td><label for="checkUtensils">Take out cups, bbowls, boxes, straws</label></td>
+            <td> <input type="checkbox" name="checkUtensils" id="checkUtensils" [(ngModel)]="mainList.checkUtensils" [disabled]="instance"></td>
+          </tr>
+          <tr>
+              <td><label for="towels">Arrange towels, knives and fork</label></td>
+              <td>  <input type="checkbox" name="towels" id="towels" [(ngModel)]="mainList.towels" [disabled]="instance"></td>
+            </tr>
+          <tr>
+              <td><label for="coldCups">Cold Cups - *decide on qty*</label></td>
+              <td> <input type="checkbox" name="coldCups" id="coldCups" [(ngModel)]="mainList.coldCups" [disabled]="instance"></td>
+          </tr>
+          <tr>
+              <td><label for="straws">Atleast 2 packs of straws in front cupboard</label></td>
+              <td>  <input type="checkbox" name="straws" id="straws" [(ngModel)]="mainList.straws" [disabled]="instance"></td>
+          </tr>
+
+          <tr>
+            <td>  <label for="tissuesPacks">Atleast 2 packs of tissues each</label></td>
+            <td> <input type="checkbox" name="tissuesPacks" id="tissuesPacks" [(ngModel)]="mainList.tissuesPacks" [disabled]="instance"></td>
+          </tr>
+          <tr>
+              <td>   <label for="condiments">Condiments - Sweetener, powdered milk, cream soda, thai tea, Matcha powdere etc - *to decide min level*</label></td>
+              <td>  <input type="checkbox" name="condiments" id="condiments" [(ngModel)]="mainList.condiments" [disabled]="instance"></td>
+            </tr>
+          <tr>
+              <td> <label for="teaBags">Sencha aTea bags - ensure that all tea bag trays are stocked - *to decide on how much*</label></td>
+              <td><input type="checkbox" name="teaBags" id="teaBags" [(ngModel)]="mainList.teaBags" [disabled]="instance"></td>
+          </tr>
+          <tr>
+              <td> <label for="takeoutBox">Transparent larger takeout box - *decide on qty*</label></td>
+              <td> <input type="checkbox" name="takeoutBox" id="takeoutBox" [(ngModel)]="mainList.takeoutBox" [disabled]="instance"></td>
+          </tr>
+          <tr>
+            <td> <label for="beverages">Sparkling water, Juice, garnishes, fruits, alcohol from storage</label></td>
+            <td><input type="checkbox" name="beverages" id="beverages" [(ngModel)]="mainList.beverages" [disabled]="instance"></td>
+        </tr>
+        <tr>
+            <td> <label for="ramenBar">Gas for torch and ramen bar related items</label></td>
+            <td>  <input type="checkbox" name="ramenBar" id="ramenBar" [(ngModel)]="mainList.ramenBar" [disabled]="instance"></td>
+        </tr>
+      </table>      
+    </div>
+
+   
+    
+    <div class="ending-section">
+      <div class="comment-container">
+          <label for="comment">Comments:</label>
+          <textarea 
+            name="comment" 
+            id="" 
+            [disabled]="instance"
+            [(ngModel)]="mainList.comment.comment"
+            >
+          </textarea>
+        </div>
+      
+
+        <div class="signature-section-container">
+            <div class="signature-section"  ngModelGroup="signature">
+              <div class="signature-container">
+                  <div class="title">Sign Here</div>
+    
+                  <div class="input-line">
+                      <label for="name">Signed</label>
+                      <input type="text" name="name" id="name" [(ngModel)]="mainList.signature.name" [disabled]="instance" required>
+                  </div>
+                  <div class="input-line">
+                      <label for="date">Date</label>
+                      <input  type="date" 
+                              name="date" 
+                              id="date" 
+                              [(ngModel)]="mainList.signature.date" 
+                              [disabled]="instance" 
+                              [value]="mainList.signature.date"
+                              required
+                              >
+                  </div>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" [disabled]="instance">Submit</button>
+    </div>
+     
+   
+  </form>
+  

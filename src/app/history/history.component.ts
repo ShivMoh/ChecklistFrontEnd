@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MainServiceService } from '../services/main-service.service';
-import { MainList } from '../models/main-list';
+
 import { Router } from '@angular/router';
+import { KitchenCheckList } from '../models/kitchen-check-list/kitchen-check-list';
 
 @Component({
   selector: 'app-history',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './history.component.scss'
 })
 export class HistoryComponent {
-  mainLists : MainList[] = [];
+  mainLists : KitchenCheckList[] = [];
 
   constructor(private mainService : MainServiceService, private router : Router) {
 

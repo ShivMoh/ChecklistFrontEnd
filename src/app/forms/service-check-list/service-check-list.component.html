@@ -1,0 +1,160 @@
+
+
+
+<form action="" class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="section-container form-group"  ngModelGroup="saladPrepServer" #formSaladPrepServer="ngModelGroup">
+      <p class="section-title">Prep veg for salad</p>
+      <table>
+          <tr>
+              <th>Task Description</th>
+              <th>Completed</th>
+            </tr>
+  
+         
+              <tr >
+                <td>
+                    <label for="stirSaladVegeServerLights">Turn on lights and 1 air conditioner</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="stirSaladVegeServerLights" id="stirSaladVegeServerLights" [(ngModel)]="mainList.saladPrepServer.stirSaladVegeServerLights" [disabled]="instance">
+                </td>
+              
+              </tr>
+              <tr>
+                <td>                  
+                    <label for="stirSaladVegeServerRemove">Remove bar items from noodle freeze to wine chiller</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="stirSaladVegeServerRemove" id="stirSaladVegeServerRemove" [(ngModel)]="mainList.saladPrepServer.stirSaladVegServerRemove" [disabled]="instance">
+                </td>
+              
+              </tr>
+            
+      </table>
+    </div>
+      <div class="section-container form-group" ngModelGroup="prepSaucesServer" #formPrepSaucesServer="ngModelGroup">
+        <p class="section-title">Prep Sauces and Open service area</p>
+  
+        <table>
+            <tr>
+              <th></th>
+              <th>Completed</th>
+            </tr>
+                
+            <tr>
+              <td> <label for="coconutWater">Ensure coconut water is available to serve</label></td>
+              <td>   <input type="checkbox" name="coconutWater" id="coconutWater" [(ngModel)]="mainList.prepSaucesServer.coconutWater" [disabled]="instance"></td>
+            </tr>
+        </table>      
+      </div>
+  
+      <div class="section-container form-group" ngModelGroup="cleanRestaurantServer" #formCleanRestaurantServer="ngModelGroup">
+        <p class="section-title">Clean restaurant for opening</p>
+  
+        <table>
+            <tr>
+              <th></th>
+              <th>Completed</th>
+            </tr>
+            <tr>
+              <td>  <label for="sweep">Thoroughly sweep</label></td>
+              <td><input type="checkbox" name="sweep" id="sweep" [(ngModel)]="mainList.cleanRestaurantServer.sweep" [disabled]="instance">
+
+              </td>
+            </tr>
+            <tr>
+              <td>   <label for="wipeTables">Using a damp cloth washed in soap and warm water solution; wipe and dry all tables, chairs and other furniture</label></td>
+              <td>              <input type="checkbox" name="wipeTables" id="wipeTables" [(ngModel)]="mainList.cleanRestaurantServer.wipeTables" [disabled]="instance">
+              </td>
+            </tr>
+            <tr>
+              <td> <label for="fixFurniture">Fix furniture and be ready to open</label></td>
+              <td>  <input type="checkbox" name="fixFurniture" id="fixFurniture" [(ngModel)]="mainList.cleanRestaurantServer.fixFurniture" [disabled]="instance"></td>
+            </tr>
+           
+        </table>      
+      </div>
+  
+      <div class="section-container form-group" ngModelGroup="aromaticsServer" #aromaticsServer="ngModelGroup">
+        <p class="section-title">Aromatics Dessert</p>
+  
+        <table>
+            <tr>
+              <th></th>
+              <th>Completed</th>
+            </tr>
+            <tr>
+              <td><label for="cleanGlass">Clean Front glass on both sides to remove any prints, dust and scruffs</label></td>
+              <td> <input type="checkbox" name="cleanGlass" id="cleanGlass" [(ngModel)]="mainList.aromaticsServer.cleanGlass" [disabled]="instance">
+              </td>
+            </tr>
+        
+        </table>      
+      </div>
+  
+      <div class="section-container form-group" ngModelGroup="finalPrepServer" #finalPrepServer="ngModelGroup">
+        <p class="section-title">FInal pre opening rush</p>
+  
+        <table>
+            <tr>
+              <th></th>
+              <th>Completed</th>
+            </tr>
+            <tr>
+              <td>  <label for="turnOnTv">Turn on TV and test audio equipment</label></td>
+              <td>  <input type="checkbox" name="turnOnTv" id="turnOnTv" [(ngModel)]="mainList.finalPrepServer.turnOnTv" [disabled]="instance"></td>
+            </tr>
+            <tr>
+              <td><label for="openingStandup">Run opening Standup to discuss plans for the day</label></td>
+              <td>  <input type="checkbox" name="openingStandup" id="openingStandup" [(ngModel)]="mainList.finalPrepServer.openingStandup" [disabled]="instance"></td>
+            </tr>
+            <tr>
+                <td>  <label for="listUnavailableItems">CRITICAL: Make a list of the items that won't be available for the day</label></td>
+                <td>   <input type="checkbox" name="listUnavailableItems" id="listUnavailableItems" [(ngModel)]="mainList.finalPrepServer.listUnavailableItems" [disabled]="instance"></td>
+              </tr>
+        </table>      
+      </div>
+      
+      <div class="ending-section">
+        <div class="comment-container">
+            <label for="comment">Comments:</label>
+            <textarea 
+              name="comment" 
+              id="" 
+              [disabled]="instance"
+              [(ngModel)]="mainList.comment.comment"
+              >
+            </textarea>
+          </div>
+        
+
+          <div class="signature-section-container">
+              <div class="signature-section"  ngModelGroup="signature">
+                <div class="signature-container">
+                    <div class="title">Sign Here</div>
+      
+                    <div class="input-line">
+                        <label for="kitchenName">Signed</label>
+                        <input type="text" name="kitchenName" id="kitchenName" [(ngModel)]="mainList.signature.name" [disabled]="instance" required>
+                    </div>
+                    <div class="input-line">
+                        <label for="kitchenDate">Date</label>
+                        <input  type="date" 
+                                name="kitchenDate" 
+                                id="kitchenDate" 
+                                [(ngModel)]="mainList.signature.date" 
+                                [disabled]="instance" 
+                                [value]="mainList.signature.date"
+                                required
+                                >
+                    </div>
+                  </div>
+              </div>
+          </div>
+          
+          <button type="submit" [disabled]="instance">Submit</button>
+      </div>
+       
+     
+    </form>
+    
