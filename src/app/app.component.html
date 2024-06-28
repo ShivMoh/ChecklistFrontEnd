@@ -1,1 +1,36 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container class="container">
+    <mat-sidenav id="fixedSidenav"   mode="side" opened="true" >
+      <div id = list>
+
+            <div class="nav-item"  routerLink="/kitchen-check-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <a>  
+                    <mat-icon>dashboard</mat-icon>
+                </a>
+                <p>Kitchen Checklist</p>
+            </div>
+            
+            <div class="nav-item" routerLink="/service-check-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <a >  
+                    <mat-icon>dashboard</mat-icon>
+                </a>
+                <p>Service Check list</p>
+            </div>
+         
+            <div class="nav-item" routerLink="/cashier-check-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <a >  
+                    <mat-icon>dashboard</mat-icon>
+                </a>
+                <p>Cashier check list</p>
+            </div>
+            <div class="nav-item" routerLink="/stock-opening-check-list" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <a >  
+                    <mat-icon>dashboard</mat-icon>
+                </a>
+                <p>Stock opening check list</p>
+            </div>            
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

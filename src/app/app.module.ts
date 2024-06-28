@@ -15,6 +15,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 // angular material imports
 import {MatIconModule} from '@angular/material/icon';
+import {MatTooltipModule} from '@angular/material/tooltip'
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatButtonModule} from '@angular/material/button'
+import {MatTabsModule} from '@angular/material/tabs'
+
 import { ServiceCheckListComponent } from './forms/service-check-list/service-check-list.component';
 import { CashierCheckListComponent } from './forms/cashier-check-list/cashier-check-list.component';
 import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list/stock-opening-check-list.component'
@@ -39,7 +45,12 @@ import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list
     DatePipe,
 
     // angular materials
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatTabsModule
   ],
   providers: [
     DatePipe,
