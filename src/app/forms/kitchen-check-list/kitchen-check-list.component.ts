@@ -14,6 +14,7 @@ import { KitchenCheckListService } from '../../services/kitchen-check-list.servi
 })
 export class KitchenCheckListComponent {
   instance : boolean = false;
+  messageSubmittedSucessfully : boolean = false;
   mainList: KitchenCheckList = {
     id : "",
     aromatics: {
@@ -110,5 +111,13 @@ export class KitchenCheckListComponent {
       form.reset();
     })
    
+  }
+
+  getFiles(event: any) {
+    
+  }
+
+  getFileProgress(event : any) {
+
   }
 }

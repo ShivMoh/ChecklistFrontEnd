@@ -235,6 +235,13 @@
               >
             </textarea>
           </div>
+
+
+          <app-upload
+            (filesEmitter)="getFiles($event)"
+            (progressEmitter)="getFileProgress($event)"
+            [submitted]="messageSubmittedSucessfully"
+          ></app-upload>
         
 
           <div class="signature-section-container">
@@ -260,6 +267,7 @@
                   </div>
               </div>
           </div>
+
           
           <button type="submit" [disabled]="instance">Submit</button>
       </div>
