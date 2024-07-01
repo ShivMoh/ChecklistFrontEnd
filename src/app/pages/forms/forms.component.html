@@ -1,0 +1,5 @@
+<div class="lists">
+    <div class="list" *ngFor="let form of forms" (click)="this.navigate(form[1])">
+        <div>{{form[0]}}</div>
+    </div>
+</div>

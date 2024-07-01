@@ -26,4 +26,6 @@ export interface KitchenCheckList {
     comment: Comment;
     signature: Signature;
     date: string;
+
+    files?: File[];
 }

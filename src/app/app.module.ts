@@ -24,7 +24,8 @@ import {MatTabsModule} from '@angular/material/tabs'
 import { ServiceCheckListComponent } from './forms/service-check-list/service-check-list.component';
 import { CashierCheckListComponent } from './forms/cashier-check-list/cashier-check-list.component';
 import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list/stock-opening-check-list.component';
-import { DragAndDropDirective } from './directives/drag-and-drop.directive'
+import { DragAndDropDirective } from './directives/drag-and-drop.directive';
+import { FormsComponent } from './pages/forms/forms.component'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DragAndDropDirective } from './directives/drag-and-drop.directive'
     CashierCheckListComponent,
     StockOpeningCheckListComponent,
     DragAndDropDirective,
+    FormsComponent,
   ],
   imports: [
     BrowserModule,

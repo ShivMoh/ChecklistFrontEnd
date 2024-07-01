@@ -48,6 +48,7 @@ export class UploadComponent {
 
   deleteFile(index: number) {
     if (this.files[index].progress < 100) {
+   
       return;
     }
     this.files.splice(index, 1);

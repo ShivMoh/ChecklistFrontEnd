@@ -92,7 +92,6 @@ export class KitchenCheckListComponent {
       return;
     }
 
-
     this.mainService.getListById(id).subscribe( (list : KitchenCheckList) => {
       if (list) {
         console.log(list)
@@ -107,14 +106,14 @@ export class KitchenCheckListComponent {
     console.log(this.mainList)
     if (!form.valid) return;
     this.mainService.createList(this.mainList).subscribe(list => {
-      console.log(list);
+      console.log("here is returned list", list);
       form.reset();
     })
    
   }
 
-  getFiles(event: any) {
-    
+  getFiles(files: any) {
+    this.mainList.files = files;
   }
 
   getFileProgress(event : any) {
