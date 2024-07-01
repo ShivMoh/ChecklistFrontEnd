@@ -6,6 +6,8 @@ import { ServiceCheckList } from '../../models/service-check-list/service-check-
 import { NgForm } from '@angular/forms';
 import { CashierChecklist } from '../../models/cashier-checklist';
 import { CashierCheckListService } from '../../services/cashier-check-list.service';
+import { FileService } from '../../services/file.service';
+import { FileType } from '../../models/file-type';
 
 @Component({
   selector: 'app-cashier-check-list',
@@ -14,6 +16,9 @@ import { CashierCheckListService } from '../../services/cashier-check-list.servi
 })
 export class CashierCheckListComponent {
   instance : boolean = false;
+  messageSubmittedSucessfully : boolean = false;
+  files : File[] = []
+  imageUrls : string[] = [];
   mainList: CashierChecklist = {
     id: "",
     checkCash: false,
@@ -32,7 +37,8 @@ export class CashierCheckListComponent {
   
   constructor(private mainService : CashierCheckListService, 
               private activatedRoute : ActivatedRoute,
-              private datePipe: DatePipe
+              private datePipe: DatePipe,
+              private fileService :  FileService
        
             ) {
     
@@ -56,7 +62,11 @@ export class CashierCheckListComponent {
         console.log(list)
         this.instance = true;
         this.mainList = list;
-      }
+        this.getImages();
+
+        if (this.mainList.comment.comment.length == 0) {
+          this.mainList.comment.comment = "No comments"
+      }}
 
     })
 
@@ -64,9 +74,41 @@ export class CashierCheckListComponent {
   onSubmit(form : NgForm) {
     if (!form.valid) return;
     this.mainService.createList(this.mainList).subscribe(list => {
-      console.log(list);
+      console.log(list.id)
+      this.fileService.uploadFile(this.files, list.id).subscribe(files => {
+        console.log(files)
+      })
       form.reset();
+      location.reload();
     })
    
+  }
+
+  getFiles(files: any) {
+    this.files = files
+  }
+
+  getImages() {
+  
+
+      this.fileService.getAllFileTypeForList(this.mainList.id).subscribe( (returnFiles : FileType[]) => {
+     
+        for (let index = 0; index < returnFiles.length; index++) {
+          this.fileService.getFile(returnFiles[index].path).subscribe(blob => {
+  
+            const reader = new FileReader();
+                reader.readAsDataURL(blob); 
+                reader.onloadend = () => {
+                    this.imageUrls.push(reader.result as string);
+                };
+          })
+        }
+        
+      })
+
+  }
+
+  getFileProgress(event : any) {
+
   }
 }

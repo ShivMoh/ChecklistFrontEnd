@@ -1,5 +1,6 @@
 <div class="lists">
-    <div class="list" *ngFor="let list of mainLists" (click)="this.navigate(list.id)">
-        <div>{{list.date | date : 'short'}}</div>
+    <div class="list" *ngFor="let list of lists; index as i" (click)="select(i)">
+        <div>{{list}}</div>
     </div>
 </div>
+

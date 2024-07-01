@@ -1,0 +1,5 @@
+<div *ngIf="lists.length > 0" class="lists">
+    <div *ngFor="let list of lists" class="list" (click)="select(list.id)">
+        Date created: {{list.date }}
+    </div>
+</div>

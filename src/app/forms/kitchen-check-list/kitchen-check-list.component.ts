@@ -18,6 +18,7 @@ export class KitchenCheckListComponent {
   instance : boolean = false;
   messageSubmittedSucessfully : boolean = false;
   files : File[] = []
+  imageUrls : string[] = [];
   mainList: KitchenCheckList = {
     id : "",
     aromatics: {
@@ -87,11 +88,14 @@ export class KitchenCheckListComponent {
   ngOnInit() {
     this.getList();
     this.mainList.date = this.datePipe.transform(new Date().toString(), "yyyy-MM-dd")!;
+    
+    
   }
+  
 
   getList() {
     var id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id);
+   
     if (id == undefined || id==null) {
       return;
     }
@@ -101,7 +105,11 @@ export class KitchenCheckListComponent {
         console.log(list)
         this.instance = true;
         this.mainList = list;
-      }
+        this.getImages();
+
+        if (this.mainList.comment.comment.length == 0) {
+          this.mainList.comment.comment = "No comments"
+        }}
    
     })
   }
@@ -125,28 +133,23 @@ export class KitchenCheckListComponent {
     this.files = files
   }
 
-  filee : FileType[] = [];
-  something() {
-    // console.log(this.files)
-    // const promises = this.files.map(file => {
-    //   return this.fileToBytes(file).then(bytes => {
-    //     this.filee.push({
-    //       name : file.name,
-    //       type : file.type,
-    //       bytes :  bytes as Uint8Array
-    //     })
-    //     console.log("helloo");
-    //     console.log(this.filee)
-    //   })
-    // })
-    
-    // Promise.all(promises).then(() => {
-    
-      this.fileService.uploadFile(this.files, "xxxx-xxxx-xxxx-xxxx").subscribe(files => {
-        console.log("Returned files", files);
+  getImages() {
+  
+
+      this.fileService.getAllFileTypeForList(this.mainList.id).subscribe( (returnFiles : FileType[]) => {
+     
+        for (let index = 0; index < returnFiles.length; index++) {
+          this.fileService.getFile(returnFiles[index].path).subscribe(blob => {
+  
+            const reader = new FileReader();
+                reader.readAsDataURL(blob); 
+                reader.onloadend = () => {
+                    this.imageUrls.push(reader.result as string);
+                };
+          })
+        }
+        
       })
-    // })
-    
 
   }
 
@@ -154,18 +157,30 @@ export class KitchenCheckListComponent {
 
   }
 
-  fileToBytes(file : any) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = function(event : any) {
-            // const arrayBuffer = event.target.result;
-            // const bytes = new Uint8Array(arrayBuffer);
-            resolve(event.target.result);
-        };
-        reader.onerror = function(event) {
-            reject(new Error("Error reading file"));
-        };
-        reader.readAsDataURL(file);
-    });
-}
+  // fileToBytes(file : any) {
+  //   return new Promise((resolve, reject) => {
+  //       const reader = new FileReader();
+  //       reader.onload = function(event : any) {
+  //           // const arrayBuffer = event.target.result;
+  //           // const bytes = new Uint8Array(arrayBuffer);
+  //           resolve(event.target.result);
+  //       };
+  //       reader.onerror = function(event) {
+  //           reject(new Error("Error reading file"));
+  //       };
+  //       reader.readAsDataURL(file);
+  //   });
+
+
+//   loadImage(listId: string) {
+//     this.fileService.getFile(listId).subscribe(blob => {
+//         const reader = new FileReader();
+//         reader.readAsDataURL(blob); 
+//         reader.onloadend = () => {
+//             this.imageUrl = reader.result as string;
+//         };
+//     });
+// }
+
+
 }

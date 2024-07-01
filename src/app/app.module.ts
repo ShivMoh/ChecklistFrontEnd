@@ -25,7 +25,8 @@ import { ServiceCheckListComponent } from './forms/service-check-list/service-ch
 import { CashierCheckListComponent } from './forms/cashier-check-list/cashier-check-list.component';
 import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list/stock-opening-check-list.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
-import { FormsComponent } from './pages/forms/forms.component'
+import { FormsComponent } from './pages/forms/forms.component';
+import { HistoryListComponent } from './pages/history-list/history-list.component'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormsComponent } from './pages/forms/forms.component'
     StockOpeningCheckListComponent,
     DragAndDropDirective,
     FormsComponent,
+    HistoryListComponent,
   ],
   imports: [
     BrowserModule,

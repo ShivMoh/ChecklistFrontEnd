@@ -69,12 +69,28 @@
             >
           </textarea>
         </div>
+
+
+        <app-upload *ngIf="!this.instance"
+        (filesEmitter)="getFiles($event)"
+        (progressEmitter)="getFileProgress($event)"
+        [submitted]="messageSubmittedSucessfully"
+      ></app-upload>
+      <div class="image-container" *ngIf="this.instance">
+        <p class="section-title">Uploaded Images</p>
+        <div class="images-container">
+          <div *ngFor="let image of this.imageUrls">
+            <img [src]="image" alt="image">
+          </div>
+        </div>
+      
+      </div>
       
 
         <div class="signature-section-container">
             <div class="signature-section"  ngModelGroup="signature">
               <div class="signature-container">
-                  <div class="title">Sign Here</div>
+                  <div class="title">{{instance ? "Signed by" : "Sign here"}}</div>
     
                   <div class="input-line">
                       <label for="name">Signed</label>
@@ -95,7 +111,7 @@
             </div>
         </div>
         
-        <button type="submit" [disabled]="instance">Submit</button>
+        <button type="submit" [disabled]="instance" *ngIf="!instance">Submit</button>
     </div>
      
    

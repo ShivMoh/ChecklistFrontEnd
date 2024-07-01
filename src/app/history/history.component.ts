@@ -10,20 +10,27 @@ import { KitchenCheckList } from '../models/kitchen-check-list/kitchen-check-lis
   styleUrl: './history.component.scss'
 })
 export class HistoryComponent {
-  mainLists : KitchenCheckList[] = [];
+  lists : string[] = [
+    "Kitchen checklist form",
+    "Service checklist form",
+    "Cashier checklist form",
+    "Stock opening check list",
+  ];
 
   constructor(private mainService : MainServiceService, private router : Router) {
 
   }
 
   ngOnInit() {
-    this.mainService.getAllLists().subscribe(lists => {
-      this.mainLists = lists;
-    })
+  
   }
 
   navigate(id : any) {
     // console.log(id)
     this.router.navigate(["/list", id]);
+  }
+
+  select(index: any) {
+    this.router.navigate(["/history-list", index]);
   }
 }

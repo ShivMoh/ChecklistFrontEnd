@@ -7,6 +7,7 @@ import { ServiceCheckListComponent } from './forms/service-check-list/service-ch
 import { CashierCheckListComponent } from './forms/cashier-check-list/cashier-check-list.component';
 import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list/stock-opening-check-list.component';
 import { FormsComponent } from './pages/forms/forms.component';
+import { HistoryListComponent } from './pages/history-list/history-list.component';
 
 const routes: Routes = [
   { path: 'main-table', component: MainTableComponent},
@@ -16,8 +17,12 @@ const routes: Routes = [
   { path: 'cashier-check-list', component: CashierCheckListComponent},
   { path: 'stock-opening-check-list', component: StockOpeningCheckListComponent},
   { path: 'forms', component: FormsComponent},
+  { path: 'history-list/:id', component: HistoryListComponent},
+  { path: 'kitchen-list/:id', component: KitchenCheckListComponent},
+  { path: 'service-list/:id', component: ServiceCheckListComponent},
+  { path: 'cashier-list/:id', component: CashierCheckListComponent},
+  { path: 'stock-opening-list/:id', component: StockOpeningCheckListComponent},
 
-  { path: 'list/:id', component: MainTableComponent},
   { path : '', redirectTo: '/forms', pathMatch: 'full'},
 
 ];
