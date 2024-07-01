@@ -13,9 +13,13 @@ export class KitchenCheckListService {
     return this.http.post<KitchenCheckList>("http://localhost:5264/api/KitchenList/Create", kitchenCheckList);
   }
 
+
+
   getAllLists() : Observable<KitchenCheckList[]> {
     return this.http.post<KitchenCheckList[]>("http://localhost:5264/api/KitchenList/GetAllLists", {});
   }
+
+ 
 
 
   getListById(id: string) : Observable<KitchenCheckList> {

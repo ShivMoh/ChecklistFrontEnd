@@ -14,7 +14,7 @@ export class UploadComponent {
   fileUrls: string[] = [];
   @Input() submitted : boolean = false;
 
-  private acceptedFileTypes: string[] = ['application/pdf', 'application/jpg', 'application/jpeg', 'application/png']
+  private acceptedFileTypes: string[] = ['application/pdf', 'application/jpg', 'application/jpeg', 'application/png', 'image/jpg']
 
   stateStyle: object = {
     'border': 'dashed 2px grey'
@@ -80,11 +80,12 @@ export class UploadComponent {
 
   prepareFilesList(files: Array<any>) {
     for (const item of files) {
-      if(!this.acceptedFileTypes.includes(item['type'])) {
-        // maybe replace with something nicer
-        alert("File Type Not Allowed!");
-        return;
-      }
+      console.log(item['type'])
+      // if(!this.acceptedFileTypes.includes(item['type'])) {
+      //   // maybe replace with something nicer
+      //   alert("File Type Not Allowed!");
+      //   return;
+      // }
 
       item.progress = 0;
       this.files.push(item);

@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { KitchenCheckList } from '../../models/kitchen-check-list/kitchen-check-list';
 import { KitchenCheckListService } from '../../services/kitchen-check-list.service';
+import { FileType } from '../../models/file-type';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-kitchen-check-list',
@@ -15,6 +17,7 @@ import { KitchenCheckListService } from '../../services/kitchen-check-list.servi
 export class KitchenCheckListComponent {
   instance : boolean = false;
   messageSubmittedSucessfully : boolean = false;
+  files : File[] = []
   mainList: KitchenCheckList = {
     id : "",
     aromatics: {
@@ -75,7 +78,8 @@ export class KitchenCheckListComponent {
   
   constructor(private mainService : KitchenCheckListService, 
               private activatedRoute : ActivatedRoute,
-              private datePipe : DatePipe
+              private datePipe : DatePipe,
+              private fileService : FileService
             ) {
     
   }
@@ -104,19 +108,64 @@ export class KitchenCheckListComponent {
 
   onSubmit(form : NgForm) {
     console.log(this.mainList)
+    console.log(this.files)
     if (!form.valid) return;
     this.mainService.createList(this.mainList).subscribe(list => {
-      console.log("here is returned list", list);
+      console.log(list.id)
+      this.fileService.uploadFile(this.files, list.id).subscribe(files => {
+        console.log(files)
+      })
       form.reset();
+      location.reload();
     })
    
   }
 
   getFiles(files: any) {
-    this.mainList.files = files;
+    this.files = files
+  }
+
+  filee : FileType[] = [];
+  something() {
+    // console.log(this.files)
+    // const promises = this.files.map(file => {
+    //   return this.fileToBytes(file).then(bytes => {
+    //     this.filee.push({
+    //       name : file.name,
+    //       type : file.type,
+    //       bytes :  bytes as Uint8Array
+    //     })
+    //     console.log("helloo");
+    //     console.log(this.filee)
+    //   })
+    // })
+    
+    // Promise.all(promises).then(() => {
+    
+      this.fileService.uploadFile(this.files, "xxxx-xxxx-xxxx-xxxx").subscribe(files => {
+        console.log("Returned files", files);
+      })
+    // })
+    
+
   }
 
   getFileProgress(event : any) {
 
   }
+
+  fileToBytes(file : any) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function(event : any) {
+            // const arrayBuffer = event.target.result;
+            // const bytes = new Uint8Array(arrayBuffer);
+            resolve(event.target.result);
+        };
+        reader.onerror = function(event) {
+            reject(new Error("Error reading file"));
+        };
+        reader.readAsDataURL(file);
+    });
+}
 }
