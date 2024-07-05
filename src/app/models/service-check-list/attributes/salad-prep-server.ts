@@ -1,4 +1,5 @@
 export interface SaladPrepServer {
     stirSaladVegeServerLights: boolean;
-    stirSaladVegServerRemove: boolean;
+    stirSaladVegeServerRemove : boolean;
+    fileContainerTypeId : string;
 }

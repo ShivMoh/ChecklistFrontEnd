@@ -7,8 +7,8 @@ import { PrepSaucesServer } from "./attributes/prep-sauces-server";
 import { SaladPrepServer } from "./attributes/salad-prep-server";
 
 export interface ServiceCheckList {
+
     id: string;
-    
     aromaticsServer : AromaticsServer;
     cleanRestaurantServer: CleanRestaurantServer;
     finalPrepServer: FinalPrepServer;
@@ -18,5 +18,6 @@ export interface ServiceCheckList {
     comment: Comment;
     signature: Signature;
     date: string;
+    listReferenceTypeId?: string;
 
 }

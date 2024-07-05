@@ -1,7 +1,5 @@
-import { Comment } from "./comment";
-import { Signature } from "./signature";
 
-export interface StockOpeningCheckList {
+export interface StockTask {
     id: string;
     beverages: boolean;
     checkUtensils: boolean;
@@ -15,7 +13,7 @@ export interface StockOpeningCheckList {
     teaBags: boolean;
     takeoutBox: boolean;
 
-    comment: Comment;
-    signature: Signature;
-    date: string;
+    fileContainerTypeId : string;
+
+    
 }

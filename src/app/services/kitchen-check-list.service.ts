@@ -13,14 +13,29 @@ export class KitchenCheckListService {
     return this.http.post<KitchenCheckList>("http://localhost:5264/api/KitchenList/Create", kitchenCheckList);
   }
 
+  createBlankList() : Observable<KitchenCheckList> {
+    return this.http.get<KitchenCheckList>("http://localhost:5264/api/KitchenList/CreateBlank");
+  }
 
+  checkIfBlankListExists() : Observable<boolean> {
+    return this.http.get<boolean>("http://localhost:5264/api/KitchenList/CheckIfBlankFormExists");
+  }
+
+  getUnsubmittedForm() : Observable<KitchenCheckList> {
+    return this.http.get<KitchenCheckList>("http://localhost:5264/api/KitchenList/GetUnsubmittedForm");
+  }
+
+  submitForm(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
+    return this.http.post<KitchenCheckList>("http://localhost:5264/api/KitchenList/SubmitForm", kitchenCheckList);
+  }
+
+  saveCurrentState(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
+    return this.http.post<KitchenCheckList>("http://localhost:5264/api/KitchenList/SaveCurrentState", kitchenCheckList);
+  }
 
   getAllLists() : Observable<KitchenCheckList[]> {
     return this.http.post<KitchenCheckList[]>("http://localhost:5264/api/KitchenList/GetAllLists", {});
   }
-
- 
-
 
   getListById(id: string) : Observable<KitchenCheckList> {
     return this.http.get<KitchenCheckList>(`http://localhost:5264/api/KitchenList/GetListById?id=${id}`);

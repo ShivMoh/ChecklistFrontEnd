@@ -11,18 +11,27 @@ export class FileService {
 
   constructor(private http : HttpClient) { }
 
-  uploadFile(files : any[], listId : string) : Observable<any[]> {
+  uploadFile(file : any, listId : string, fileContainerTypeId : string, label? : string) : Observable<any[]> {
     const formData: FormData = new FormData();
-    files.forEach(file => formData.append('files', file, file.name));
-    formData.append("listId", listId);
+    formData.append('file', file, file.name);
+    formData.append("listReferenceId", listId);
+    formData.append("fileContainerTypeId", fileContainerTypeId);
+    formData.append("label", label!);
+
+    // console.log(listId);
     return this.http.post<any[]>("http://localhost:5264/api/File/UploadFile", formData);
   }
 
   getFile(listId : string) : Observable<Blob> {
-    return this.http.get<Blob>(`http://localhost:5264/api/File/GetFile?listId=${listId}`, {responseType : 'blob' as 'json'});
+    return this.http.get<Blob>(`http://localhost:5264/api/File/GetFile?filePath=${listId}`, {responseType : 'blob' as 'json'});
   }
   
   getAllFileTypeForList(listId : string) : Observable<FileType[]> {
-    return this.http.get<FileType[]>(`http://localhost:5264/api/File/GetAllFileTypeForList?listId=${listId}`);
+    return this.http.get<FileType[]>(`http://localhost:5264/api/File/GetAllFileTypeForList?listReferenceTypeId=${listId}`);
   }
+
+  getAllFileTypeForAttribute(fileContainerTypeId : string) : Observable<FileType[]> {
+    return this.http.get<FileType[]>(`http://localhost:5264/api/File/GetAllFileTypeForAttribute?fileContainerTypeId=${fileContainerTypeId}`);
+  }
+
 }

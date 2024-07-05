@@ -8,6 +8,7 @@
           <tr>
               <th>Task Description</th>
               <th>Completed</th>
+              <th>Images</th>
             </tr>
   
          
@@ -18,6 +19,15 @@
                 <td>
                     <input type="checkbox" name="stirSaladVegeServerLights" id="stirSaladVegeServerLights" [(ngModel)]="mainList.saladPrepServer.stirSaladVegeServerLights" [disabled]="instance">
                 </td>
+                <td>
+                  <app-upload
+                  [submitFiles]="submitFiles"
+                  [fileContainerTypeId]="mainList.saladPrepServer.fileContainerTypeId"
+                  [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                  [instance]="instance"
+                  [label]="'server-lights'"
+                  ></app-upload>                  
+                </td>
               
               </tr>
               <tr>
@@ -25,7 +35,16 @@
                     <label for="stirSaladVegeServerRemove">Remove bar items from noodle freeze to wine chiller</label>
                 </td>
                 <td>
-                    <input type="checkbox" name="stirSaladVegeServerRemove" id="stirSaladVegeServerRemove" [(ngModel)]="mainList.saladPrepServer.stirSaladVegServerRemove" [disabled]="instance">
+                    <input type="checkbox" name="stirSaladVegeServerRemove" id="stirSaladVegeServerRemove" [(ngModel)]="mainList.saladPrepServer.stirSaladVegeServerRemove " [disabled]="instance">
+                </td>
+                <td>
+                  <app-upload
+                  [submitFiles]="submitFiles"
+                  [fileContainerTypeId]="mainList.saladPrepServer.fileContainerTypeId"
+                  [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                  [instance]="instance"
+                  [label]="'stir-remove'"
+                  ></app-upload>                  
                 </td>
               
               </tr>
@@ -39,11 +58,23 @@
             <tr>
               <th></th>
               <th>Completed</th>
+              <th>Images</th>
+
             </tr>
                 
             <tr>
               <td> <label for="coconutWater">Ensure coconut water is available to serve</label></td>
               <td>   <input type="checkbox" name="coconutWater" id="coconutWater" [(ngModel)]="mainList.prepSaucesServer.coconutWater" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.prepSaucesServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'coconut-water'"
+                ></app-upload>                  
+              </td>
+
             </tr>
         </table>      
       </div>
@@ -55,21 +86,51 @@
             <tr>
               <th></th>
               <th>Completed</th>
+              <th>Images</th>
             </tr>
             <tr>
               <td>  <label for="sweep">Thoroughly sweep</label></td>
               <td><input type="checkbox" name="sweep" id="sweep" [(ngModel)]="mainList.cleanRestaurantServer.sweep" [disabled]="instance">
 
               </td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.cleanRestaurantServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'sweep'"
+                ></app-upload>                  
+              </td>
+              
             </tr>
             <tr>
               <td>   <label for="wipeTables">Using a damp cloth washed in soap and warm water solution; wipe and dry all tables, chairs and other furniture</label></td>
               <td>              <input type="checkbox" name="wipeTables" id="wipeTables" [(ngModel)]="mainList.cleanRestaurantServer.wipeTables" [disabled]="instance">
               </td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.cleanRestaurantServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'wipe-tables'"
+                ></app-upload>                  
+              </td>
             </tr>
             <tr>
               <td> <label for="fixFurniture">Fix furniture and be ready to open</label></td>
               <td>  <input type="checkbox" name="fixFurniture" id="fixFurniture" [(ngModel)]="mainList.cleanRestaurantServer.fixFurniture" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.cleanRestaurantServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'fix-furniture'"
+                ></app-upload>                  
+              </td>
+
             </tr>
            
         </table>      
@@ -82,10 +143,20 @@
             <tr>
               <th></th>
               <th>Completed</th>
+              <th>Images</th>
             </tr>
             <tr>
               <td><label for="cleanGlass">Clean Front glass on both sides to remove any prints, dust and scruffs</label></td>
               <td> <input type="checkbox" name="cleanGlass" id="cleanGlass" [(ngModel)]="mainList.aromaticsServer.cleanGlass" [disabled]="instance">
+              </td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.aromaticsServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'clean-glass'"
+                ></app-upload>                  
               </td>
             </tr>
         
@@ -103,14 +174,41 @@
             <tr>
               <td>  <label for="turnOnTv">Turn on TV and test audio equipment</label></td>
               <td>  <input type="checkbox" name="turnOnTv" id="turnOnTv" [(ngModel)]="mainList.finalPrepServer.turnOnTv" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.finalPrepServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'turn-on-tv'"
+                ></app-upload>                  
+              </td>
             </tr>
             <tr>
               <td><label for="openingStandup">Run opening Standup to discuss plans for the day</label></td>
               <td>  <input type="checkbox" name="openingStandup" id="openingStandup" [(ngModel)]="mainList.finalPrepServer.openingStandup" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.finalPrepServer.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'opening-standup'"
+                ></app-upload>                  
+              </td>
             </tr>
             <tr>
                 <td>  <label for="listUnavailableItems">CRITICAL: Make a list of the items that won't be available for the day</label></td>
                 <td>   <input type="checkbox" name="listUnavailableItems" id="listUnavailableItems" [(ngModel)]="mainList.finalPrepServer.listUnavailableItems" [disabled]="instance"></td>
+                <td>
+                  <app-upload
+                  [submitFiles]="submitFiles"
+                  [fileContainerTypeId]="mainList.finalPrepServer.fileContainerTypeId"
+                  [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                  [instance]="instance"
+                  [label]="'list-unavailable-items'"
+                  ></app-upload>                  
+                </td>
               </tr>
         </table>      
       </div>
@@ -127,7 +225,7 @@
             </textarea>
           </div>
 
-          <app-upload *ngIf="!this.instance"
+          <!-- <app-upload *ngIf="!this.instance"
             (filesEmitter)="getFiles($event)"
             (progressEmitter)="getFileProgress($event)"
             [submitted]="messageSubmittedSucessfully"
@@ -140,7 +238,7 @@
               </div>
             </div>
           
-          </div>
+          </div> -->
         
 
           <div class="signature-section-container">
@@ -152,17 +250,7 @@
                         <label for="kitchenName">Signed</label>
                         <input type="text" name="kitchenName" id="kitchenName" [(ngModel)]="mainList.signature.name" [disabled]="instance" required>
                     </div>
-                    <div class="input-line">
-                        <label for="kitchenDate">Date</label>
-                        <input  type="date" 
-                                name="kitchenDate" 
-                                id="kitchenDate" 
-                                [(ngModel)]="mainList.signature.date" 
-                                [disabled]="instance" 
-                                [value]="mainList.signature.date"
-                                required
-                                >
-                    </div>
+                 
                   </div>
               </div>
           </div>

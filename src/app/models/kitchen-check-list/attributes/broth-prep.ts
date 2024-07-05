@@ -4,4 +4,5 @@ export interface BrothPrep {
     prepVegetables: boolean;
     monitorPots: boolean;
     boilBroths: boolean;
+    fileContainerTypeId : string;
 }

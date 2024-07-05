@@ -16,29 +16,35 @@ import { FileType } from '../../models/file-type';
 export class ServiceCheckListComponent {
   instance : boolean = false;
   messageSubmittedSucessfully : boolean = false;
+  submitFiles : boolean = false;
   files : File[] = []
   imageUrls : string[] = [];
   mainList: ServiceCheckList = {
     id: "",
     aromaticsServer: {
-      cleanGlass: false
+      cleanGlass: false,
+      fileContainerTypeId: ''
     },
     cleanRestaurantServer: {
       sweep: false,
       wipeTables: false,
-      fixFurniture: false
+      fixFurniture: false,
+      fileContainerTypeId: ''
     },
     finalPrepServer: {
       turnOnTv: false,
       openingStandup: false,
-      listUnavailableItems: false
+      listUnavailableItems: false,
+      fileContainerTypeId: ''
     },
     prepSaucesServer: {
-      coconutWater: false
+      coconutWater: false,
+      fileContainerTypeId: ''
     },
     saladPrepServer: {
       stirSaladVegeServerLights: false,
-      stirSaladVegServerRemove: false
+      stirSaladVegeServerRemove : false,
+      fileContainerTypeId: ''
     },
     comment: {
       comment: ""
@@ -46,11 +52,11 @@ export class ServiceCheckListComponent {
     date: "",
     signature: {
       name: '',
-      date: ''
+ 
     }
   };
   
-  constructor(private service : ServiceCheckListService, 
+  constructor(private mainService : ServiceCheckListService, 
               private activatedRoute : ActivatedRoute,
               private datePipe : DatePipe,
               private fileService : FileService
@@ -59,57 +65,83 @@ export class ServiceCheckListComponent {
   }
 
   ngOnInit() {
-    this.getList();    
-    this.mainList.date = this.datePipe.transform(new Date().toString(), "yyyy-MM-dd")!;
+    this.getList();
   }
+  
+  ngOnDestroy() {
+    this.mainService.checkIfBlankListExists().subscribe(exist => {
+      if(exist) {
+        console.log("saving state");
+        this.mainService.saveCurrentState(this.mainList).subscribe(list => {
+          console.log("Saved state", list);
+        })
+     
+      }
+    })
+  }
+  
 
   getList() {
     var id = this.activatedRoute.snapshot.paramMap.get('id');
- 
+   
     if (id == undefined || id==null) {
+      console.log("helllo....")
+      // check if an incomplete form exists
+
+      this.mainService.checkIfBlankListExists().subscribe(exist => {
+        if(exist) {
+          // if so, load the save data
+          this.mainService.getUnsubmittedForm().subscribe(list => {
+            this.mainList = list;
+            console.log(this.mainList);
+            // this.getImages();
+          });
+        } else {
+          this.mainService.createBlankList().subscribe(list => {
+            console.log(list);
+            this.mainList = list;
+          });
+        }
+      })
+      // if not, create a blank form
       return;
+    } else {
+      this.mainService.getListById(id).subscribe( (list) => {
+        if (list) {
+          this.instance = true;
+          this.mainList = list;
+          console.log(this.mainList);
+          // this.getImages();
+  
+          if (this.mainList.comment.comment.length == 0) {
+            this.mainList.comment.comment = "No comments"
+          }}
+     
+      })
     }
 
-    this.service.getListById(id).subscribe( (list : ServiceCheckList) => {
-      if (list) {
-        console.log("list", list)
-        this.instance = true;
-        this.mainList = list;
-        this.getImages();
-
-        if (this.mainList.comment.comment.length == 0) {
-          this.mainList.comment.comment = "No comment"
-        }
-      }
-
-      
-  
-    })
-
+    
   }
   onSubmit(form : NgForm) {
-    console.log(form.value);
+    console.log("main list", this.mainList)
+ 
     if (!form.valid) return;
-    this.service.createList(this.mainList).subscribe(list => {
-
-      this.fileService.uploadFile(this.files, list.id).subscribe(files => {
-        console.log(files)
-      })
-      form.reset();
-      location.reload();
+    this.mainService.submitForm(this.mainList).subscribe(list => {
+      this.submitFiles = true;
+      // this.fileService.uploadFile(this.files, list.listReferenceTypeId!).subscribe(files => {
+      //   console.log("files...", files)
+      // })
+      // form.reset();
+      // location.reload();
     })
-
+   
   }
-
 
   getFiles(files: any) {
     this.files = files
   }
 
-  filee : FileType[] = [];
   getImages() {
-  
-
       this.fileService.getAllFileTypeForList(this.mainList.id).subscribe( (returnFiles : FileType[]) => {
      
         for (let index = 0; index < returnFiles.length; index++) {

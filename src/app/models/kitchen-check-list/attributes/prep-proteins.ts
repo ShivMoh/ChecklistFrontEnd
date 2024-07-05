@@ -6,8 +6,9 @@ export interface PrepProteins {
     prepWings: boolean;
     prepareChickenChashu: boolean;
     prepareChickenKatsu: boolean;
-    prepareShrimpNobu: boolean;
+    prepareShrimpNobo: boolean;
     prepareShrimpTempura: boolean;
     prepareSousVideBeef: boolean;
     seasonSalmon: boolean;
+    fileContainerTypeId : string;
 }

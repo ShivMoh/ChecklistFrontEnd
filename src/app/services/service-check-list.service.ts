@@ -20,4 +20,25 @@ export class ServiceCheckListService {
   getListById(id: string) : Observable<ServiceCheckList> {
     return this.http.get<ServiceCheckList>(`http://localhost:5264/api/ServiceList/GetListById?id=${id}`);
   }
+
+
+  createBlankList() : Observable<ServiceCheckList> {
+    return this.http.get<ServiceCheckList>("http://localhost:5264/api/ServiceList/CreateBlank");
+  }
+
+  checkIfBlankListExists() : Observable<boolean> {
+    return this.http.get<boolean>("http://localhost:5264/api/ServiceList/CheckIfBlankFormExists");
+  }
+
+  getUnsubmittedForm() : Observable<ServiceCheckList> {
+    return this.http.get<ServiceCheckList>("http://localhost:5264/api/ServiceList/GetUnsubmittedForm");
+  }
+
+  submitForm(ServiceCheckList : ServiceCheckList) : Observable<ServiceCheckList> {
+    return this.http.post<ServiceCheckList>("http://localhost:5264/api/ServiceList/SubmitForm", ServiceCheckList);
+  }
+
+  saveCurrentState(ServiceCheckList : ServiceCheckList) : Observable<ServiceCheckList> {
+    return this.http.post<ServiceCheckList>("http://localhost:5264/api/ServiceList/SaveCurrentState", ServiceCheckList);
+  }
 }

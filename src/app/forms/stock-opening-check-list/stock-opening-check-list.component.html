@@ -3,55 +3,146 @@
 
 <form action="" class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
    
-    <div class="section-container form-group">
+    <div class="section-container form-group" ngModelGroup="stockTask" #formStockTask="ngModelGroup">
       <p class="section-title">Stock Opening Check List</p>
 
       <table>
           <tr>
             <th>Task Description</th>
             <th>Completed</th>
+            <th>Images</th>
           </tr>
               
           <tr>
             <td><label for="checkUtensils">Take out cups, bbowls, boxes, straws</label></td>
-            <td> <input type="checkbox" name="checkUtensils" id="checkUtensils" [(ngModel)]="mainList.checkUtensils" [disabled]="instance"></td>
+            <td> <input type="checkbox" name="checkUtensils" id="checkUtensils" [(ngModel)]="mainList.stockTask.checkUtensils" [disabled]="instance"></td>
+            <td>
+              <app-upload
+              [submitFiles]="submitFiles"
+              [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+              [listReferenceTypeId]="mainList.listReferenceTypeId!"
+              [instance]="instance"
+              [label]="'check-utensils'"
+              ></app-upload>                  
+            </td>
           </tr>
           <tr>
               <td><label for="towels">Arrange towels, knives and fork</label></td>
-              <td>  <input type="checkbox" name="towels" id="towels" [(ngModel)]="mainList.towels" [disabled]="instance"></td>
+              <td>  <input type="checkbox" name="towels" id="towels" [(ngModel)]="mainList.stockTask.towels" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'towels'"
+                ></app-upload>                  
+              </td>
             </tr>
           <tr>
               <td><label for="coldCups">Cold Cups - *decide on qty*</label></td>
-              <td> <input type="checkbox" name="coldCups" id="coldCups" [(ngModel)]="mainList.coldCups" [disabled]="instance"></td>
+              <td> <input type="checkbox" name="coldCups" id="coldCups" [(ngModel)]="mainList.stockTask.coldCups" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'cold-cups'"
+                ></app-upload>                  
+              </td>
           </tr>
           <tr>
               <td><label for="straws">Atleast 2 packs of straws in front cupboard</label></td>
-              <td>  <input type="checkbox" name="straws" id="straws" [(ngModel)]="mainList.straws" [disabled]="instance"></td>
+              <td>  <input type="checkbox" name="straws" id="straws" [(ngModel)]="mainList.stockTask.straws" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'straws'"
+                ></app-upload>                  
+              </td>
           </tr>
 
           <tr>
             <td>  <label for="tissuesPacks">Atleast 2 packs of tissues each</label></td>
-            <td> <input type="checkbox" name="tissuesPacks" id="tissuesPacks" [(ngModel)]="mainList.tissuesPacks" [disabled]="instance"></td>
+            <td> <input type="checkbox" name="tissuesPacks" id="tissuesPacks" [(ngModel)]="mainList.stockTask.tissuesPacks" [disabled]="instance"></td>
+            <td>
+              <app-upload
+              [submitFiles]="submitFiles"
+              [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+              [listReferenceTypeId]="mainList.listReferenceTypeId!"
+              [instance]="instance"
+              [label]="'tissues-packs'"
+              ></app-upload>                  
+            </td>
           </tr>
           <tr>
               <td>   <label for="condiments">Condiments - Sweetener, powdered milk, cream soda, thai tea, Matcha powdere etc - *to decide min level*</label></td>
-              <td>  <input type="checkbox" name="condiments" id="condiments" [(ngModel)]="mainList.condiments" [disabled]="instance"></td>
+              <td>  <input type="checkbox" name="condiments" id="condiments" [(ngModel)]="mainList.stockTask.condiments" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'condiments'"
+                ></app-upload>                  
+              </td>
             </tr>
           <tr>
               <td> <label for="teaBags">Sencha aTea bags - ensure that all tea bag trays are stocked - *to decide on how much*</label></td>
-              <td><input type="checkbox" name="teaBags" id="teaBags" [(ngModel)]="mainList.teaBags" [disabled]="instance"></td>
+              <td><input type="checkbox" name="teaBags" id="teaBags" [(ngModel)]="mainList.stockTask.teaBags" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'tea-bags'"
+                ></app-upload>                  
+              </td>
           </tr>
           <tr>
               <td> <label for="takeoutBox">Transparent larger takeout box - *decide on qty*</label></td>
-              <td> <input type="checkbox" name="takeoutBox" id="takeoutBox" [(ngModel)]="mainList.takeoutBox" [disabled]="instance"></td>
+              <td> <input type="checkbox" name="takeoutBox" id="takeoutBox" [(ngModel)]="mainList.stockTask.takeoutBox" [disabled]="instance"></td>
+              <td>
+                <app-upload
+                [submitFiles]="submitFiles"
+                [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+                [listReferenceTypeId]="mainList.listReferenceTypeId!"
+                [instance]="instance"
+                [label]="'takeout-box'"
+                ></app-upload>                  
+              </td>
           </tr>
           <tr>
             <td> <label for="beverages">Sparkling water, Juice, garnishes, fruits, alcohol from storage</label></td>
-            <td><input type="checkbox" name="beverages" id="beverages" [(ngModel)]="mainList.beverages" [disabled]="instance"></td>
+            <td><input type="checkbox" name="beverages" id="beverages" [(ngModel)]="mainList.stockTask.beverages" [disabled]="instance"></td>
+            <td>
+              <app-upload
+              [submitFiles]="submitFiles"
+              [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+              [listReferenceTypeId]="mainList.listReferenceTypeId!"
+              [instance]="instance"
+              [label]="'beverages'"
+              ></app-upload>                  
+            </td>
         </tr>
         <tr>
             <td> <label for="ramenBar">Gas for torch and ramen bar related items</label></td>
-            <td>  <input type="checkbox" name="ramenBar" id="ramenBar" [(ngModel)]="mainList.ramenBar" [disabled]="instance"></td>
+            <td>  <input type="checkbox" name="ramenBar" id="ramenBar" [(ngModel)]="mainList.stockTask.ramenBar" [disabled]="instance"></td>
+            <td>
+              <app-upload
+              [submitFiles]="submitFiles"
+              [fileContainerTypeId]="mainList.stockTask.fileContainerTypeId"
+              [listReferenceTypeId]="mainList.listReferenceTypeId!"
+              [instance]="instance"
+              [label]="'ramen-bar'"
+              ></app-upload>                  
+            </td>
         </tr>
       </table>      
     </div>
@@ -71,7 +162,7 @@
         </div>
 
 
-        <app-upload *ngIf="!this.instance"
+        <!-- <app-upload *ngIf="!this.instance"
         (filesEmitter)="getFiles($event)"
         (progressEmitter)="getFileProgress($event)"
         [submitted]="messageSubmittedSucessfully"
@@ -84,7 +175,7 @@
           </div>
         </div>
       
-      </div>
+      </div> -->
       
 
         <div class="signature-section-container">
@@ -96,17 +187,7 @@
                       <label for="name">Signed</label>
                       <input type="text" name="name" id="name" [(ngModel)]="mainList.signature.name" [disabled]="instance" required>
                   </div>
-                  <div class="input-line">
-                      <label for="date">Date</label>
-                      <input  type="date" 
-                              name="date" 
-                              id="date" 
-                              [(ngModel)]="mainList.signature.date" 
-                              [disabled]="instance" 
-                              [value]="mainList.signature.date"
-                              required
-                              >
-                  </div>
+            
                 </div>
             </div>
         </div>

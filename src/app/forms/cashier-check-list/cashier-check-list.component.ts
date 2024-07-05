@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ServiceCheckList } from '../../models/service-check-list/service-check-list';
 import { NgForm } from '@angular/forms';
-import { CashierChecklist } from '../../models/cashier-checklist';
+import { CashierChecklist } from '../../models/cashier-check-list/cashier-checklist';
 import { CashierCheckListService } from '../../services/cashier-check-list.service';
 import { FileService } from '../../services/file.service';
 import { FileType } from '../../models/file-type';
@@ -17,20 +17,25 @@ import { FileType } from '../../models/file-type';
 export class CashierCheckListComponent {
   instance : boolean = false;
   messageSubmittedSucessfully : boolean = false;
+  submitFiles : boolean = false;
   files : File[] = []
   imageUrls : string[] = [];
   mainList: CashierChecklist = {
     id: "",
-    checkCash: false,
-    ensurePrinter: false,
-    ensureChange: false,
-    tidyWorkstation: false,
+    cashierTask: {
+      id: '',
+      checkCash: false,
+      ensurePrinter: false,
+      ensureChange: false,
+      tidyWorkstation: false,
+      fileContainerTypeId: ''
+    },
     comment: {
       comment: ''
     },
     signature: {
       name: '',
-      date: ''
+     
     },
     date: ""
   };
@@ -46,40 +51,73 @@ export class CashierCheckListComponent {
 
   ngOnInit() {
     this.getList();
-    this.mainList.date = this.datePipe.transform(new Date().toString(), "yyyy-MM-dd")!;
   }
+  
+  ngOnDestroy() {
+    this.mainService.checkIfBlankListExists().subscribe(exist => {
+      if(exist) {
+        console.log("saving state");
+        this.mainService.saveCurrentState(this.mainList).subscribe(list => {
+          console.log("Saved state", list);
+        })
+     
+      }
+    })
+  }
+  
 
   getList() {
     var id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id);
+   
     if (id == undefined || id==null) {
+      console.log("helllo....")
+      // check if an incomplete form exists
+
+      this.mainService.checkIfBlankListExists().subscribe(exist => {
+        if(exist) {
+          // if so, load the save data
+          this.mainService.getUnsubmittedForm().subscribe(list => {
+            this.mainList = list;
+            console.log(this.mainList);
+            // this.getImages();
+          });
+        } else {
+          this.mainService.createBlankList().subscribe(list => {
+            console.log(list);
+            this.mainList = list;
+          });
+        }
+      })
+      // if not, create a blank form
       return;
+    } else {
+      this.mainService.getListById(id).subscribe( (list) => {
+        if (list) {
+          this.instance = true;
+          this.mainList = list;
+          console.log(this.mainList);
+          // this.getImages();
+  
+          if (this.mainList.comment.comment.length == 0) {
+            this.mainList.comment.comment = "No comments"
+          }}
+     
+      })
     }
 
-
-    this.mainService.getListById(id).subscribe( (list : CashierChecklist) => {
-      if (list) {
-        console.log(list)
-        this.instance = true;
-        this.mainList = list;
-        this.getImages();
-
-        if (this.mainList.comment.comment.length == 0) {
-          this.mainList.comment.comment = "No comments"
-      }}
-
-    })
-
+    
   }
   onSubmit(form : NgForm) {
+    console.log("main list", this.mainList)
+ 
     if (!form.valid) return;
-    this.mainService.createList(this.mainList).subscribe(list => {
-      console.log(list.id)
-      this.fileService.uploadFile(this.files, list.id).subscribe(files => {
-        console.log(files)
-      })
-      form.reset();
-      location.reload();
+    this.mainService.submitForm(this.mainList).subscribe(list => {
+      this.submitFiles = true;
+      // this.fileService.uploadFile(this.files, list.listReferenceTypeId!).subscribe(files => {
+      //   console.log("files...", files)
+      // })
+      // form.reset();
+      // location.reload();
     })
    
   }
@@ -89,8 +127,6 @@ export class CashierCheckListComponent {
   }
 
   getImages() {
-  
-
       this.fileService.getAllFileTypeForList(this.mainList.id).subscribe( (returnFiles : FileType[]) => {
      
         for (let index = 0; index < returnFiles.length; index++) {
@@ -111,4 +147,5 @@ export class CashierCheckListComponent {
   getFileProgress(event : any) {
 
   }
+
 }

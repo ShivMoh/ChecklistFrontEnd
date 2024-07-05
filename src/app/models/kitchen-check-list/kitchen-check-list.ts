@@ -12,7 +12,7 @@ import { Comment } from "../comment";
 
 export interface KitchenCheckList {
     id : string;
-    // kitchen
+  
     aromatics : Aromatics;
     arrivalBasics: ArrivalBasics;
     brothPrep: BrothPrep;
@@ -25,7 +25,10 @@ export interface KitchenCheckList {
 
     comment: Comment;
     signature: Signature;
-    date: string;
 
-  
+    startDate?: string;
+    endDate?: string;
+
+    listReferenceTypeId?: string;
+
 }

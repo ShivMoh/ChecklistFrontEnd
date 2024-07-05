@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { FileService } from '../../services/file.service';
 
 @Component({
   selector: 'app-upload',
@@ -7,30 +8,100 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 })
 export class UploadComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef | undefined;
-  files: any[] = [];
-  @Output() filesEmitter: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Input() submitFiles : boolean = false;
+  @Input() label : string = "";
+  @Input() fileContainerTypeId : string = "";
+  @Input() listReferenceTypeId : string = ""; 
+  @Input() instance : boolean = false;
+  imageUrl : string = "";
+
+  file: any = null;
+  // @Output() filesEmitter: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() progressEmitter: EventEmitter<number> = new EventEmitter<number>();
   url: string = "";
   fileUrls: string[] = [];
   @Input() submitted : boolean = false;
-
+  
   private acceptedFileTypes: string[] = ['application/pdf', 'application/jpg', 'application/jpeg', 'application/png', 'image/jpg']
+
+  constructor(private fileService : FileService) {
+
+  }
 
   stateStyle: object = {
     'border': 'dashed 2px grey'
   }
 
-  ngOnChanges() {
-    if (this.submitted === true) {
+  ngOnInit() {
+    
+  }
+
+  ngOnDestroy() {
+    if (this.file != null) {
+      this.fileService.uploadFile(
+        this.file, 
+        this.listReferenceTypeId, 
+        this.fileContainerTypeId, 
+        this.label
+    ).subscribe(files => {
+        console.log(files);
+      })
       this.reset();
+  
     }
+  
+  }
+
+  ngOnChanges() {
+    if (true) {
+    
+      if(this.fileContainerTypeId.length > 0) {
+       
+        this.fileService.getAllFileTypeForAttribute(this.fileContainerTypeId).subscribe(files => {
+      
+          if(files.length > 0) {
+            var index = files.findIndex(file => {
+              return file.label == this.label
+            })
+  
+            
+            if (index != -1) {
+          
+              this.fileService.getFile(files[index].path).subscribe(blob => {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(blob); 
+                reader.onloadend = () => {
+                    this.imageUrl = reader.result as string;
+           
+                };
+              })
+            }
+            }
+        })
+      }
+    }
+    
+    if (this.submitFiles === true) {
+      
+      if (this.file != null) {
+        this.fileService.uploadFile(this.file, this.listReferenceTypeId, this.fileContainerTypeId, this.label).subscribe(files => {
+          console.log(files);
+        })
+        this.reset();
+      }
+      
+    }
+
+  
   }
 
   reset() {
-    this.files = [];
+    this.file = null;
     this.fileUrls = [];
     this.url = "";
     this.submitted = false;
+    location.reload();
   }
 
   updateStateStyle(event: object) {
@@ -39,40 +110,39 @@ export class UploadComponent {
 
   onFileDropped($event: any) {
     this.prepareFilesList($event);
+  
   }
 
   fileBrowseHandler(event: any) {
     this.prepareFilesList(event.files);
+  
   }
 
 
   deleteFile(index: number) {
-    if (this.files[index].progress < 100) {
-   
+    if (this.file.progress < 100) {
       return;
     }
-    this.files.splice(index, 1);
-    this.fileUrls.splice(index, 1);
+    this.file = null;
 
-    this.filesEmitter.emit(this.files)
   }
 
   uploadFilesSimulator(index: number) {
     setTimeout(() => {
 
-      if (index === this.files.length) {
+      if (index === 1) {
         return;
       } else {
         const progressInterval = setInterval(() => {
-          console.log(this.files[index].progress)
-          if (this.files[index].progress === 100) {
+          console.log(this.file.progress)
+          if (this.file.progress === 100) {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
-            this.filesEmitter.emit(this.files)
+            // this.filesEmitter.emit(this.files)
           } else {
-            this.files[index].progress += 5;
+            this.file.progress += 5;
           }
-          this.progressEmitter.emit(this.files[index].progress);
+          this.progressEmitter.emit(this.file.progress);
         }, 200);
       }
     }, 1000);
@@ -88,21 +158,29 @@ export class UploadComponent {
       // }
 
       item.progress = 0;
-      this.files.push(item);
-      this.getUrl(this.files.length - 1);
+      this.file = item
+      this.fileService.uploadFile(this.file, this.listReferenceTypeId, this.fileContainerTypeId, this.label).subscribe(returnedFile => {
+        console.log("Updating on file drop", returnedFile);
+        const reader = new FileReader();
+
+        reader.readAsDataURL(this.file); 
+        reader.onloadend = () => {
+            this.imageUrl = reader.result as string;
+            
+        };
+      })
     }
     this.uploadFilesSimulator(0);
   }
 
   getUrl(index: number) {
-    this.createLinkForFile(this.files[index]);
+    this.createLinkForFile(this.file);
   }
 
   createLinkForFile(file: any): void {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
-      this.url = reader.result as string;
-      this.fileUrls.push(this.url);
+      this.imageUrl = reader.result as string;
     }, false);
 
     if (file) {

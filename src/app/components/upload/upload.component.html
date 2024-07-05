@@ -1,12 +1,12 @@
 
-<div class="title">Images</div>
+<!-- <div class="title">Images</div> -->
 
 <div class="container"
     (fileDropped)="onFileDropped($event)"
     appDragAndDrop
     (stateStyleEmitter)="updateStateStyle($event)"
     [ngStyle]="stateStyle"
-
+    
     >
   <input
     type="file"
@@ -16,16 +16,22 @@
     multiple
     accept=".pdf,.png,.jpg,.jpeg"
     (change)="fileBrowseHandler($event.target)"
-    />
-  <h3>Drag and drop your files here</h3>
-  <h3>OR</h3>
-  <label for="fileDropRef">
+  />
+
+  <!-- <div>ello... {{this.imageUrl}}</div>  -->
+
+  <!-- <h3>Drag and drop your files here</h3>
+  <h3>OR</h3> -->
+  <!-- <label for="fileDropRef">
     Browse Files
-  </label>
+  </label> -->
+</div>
+<img class="image" *ngIf="imageUrl.length > 0" [src]="this.imageUrl" alt="No image uploaded">
+<div *ngIf="!instance">
+  {{file?.name}}
 </div>
 
-
-  <div class="files-list">
+  <!-- <div class="files-list">
     <div class="single-file" *ngFor="let file of files; let i = index">
       <mat-icon>
         insert_drive_file
@@ -46,4 +52,4 @@
         </mat-icon>
       </div>
     </div>
-  </div>
+  </div> -->

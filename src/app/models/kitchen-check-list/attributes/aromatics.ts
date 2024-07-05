@@ -1,4 +1,5 @@
 export interface Aromatics {
     prepAromatics : boolean;
-    readyDesserts: boolean;
+    readyDeserts: boolean;
+    fileContainerTypeId : string;
 }
