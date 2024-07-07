@@ -78,6 +78,11 @@
 
    
 }
+
+.nav-item.active {
+    background-color: #dedede;
+}
+
 mat-sidenav-content {
     height: 100vh;
     margin-top: 2vw;

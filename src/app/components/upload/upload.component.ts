@@ -33,8 +33,9 @@ export class UploadComponent {
   }
 
   ngOnInit() {
-    
+   
   }
+
 
   ngOnDestroy() {
     if (this.file != null) {
@@ -53,6 +54,19 @@ export class UploadComponent {
   }
 
   ngOnChanges() {
+    if (this.instance) {
+
+      this.stateStyle = {
+        'border' : 'none'
+      }
+     
+    } else {
+   
+      this.stateStyle = {
+        'border' : 'dashed 2px grey'
+      }
+    }
+
     if (true) {
     
       if(this.fileContainerTypeId.length > 0) {

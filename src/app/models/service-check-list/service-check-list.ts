@@ -18,6 +18,10 @@ export interface ServiceCheckList {
     comment: Comment;
     signature: Signature;
     date: string;
+
+    startDate?: string;
+    endDate?: string;
+
     listReferenceTypeId?: string;
 
 }

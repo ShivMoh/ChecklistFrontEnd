@@ -194,7 +194,13 @@
         
         <button type="submit" [disabled]="instance" *ngIf="!instance">Submit</button>
     </div>
-     
+    <app-date 
+      *ngIf="instance"
+      [startDateTime]="mainList.startDate!"
+      [endDateTime]="mainList.endDate!"
+      >
+    </app-date>
+
    
   </form>
   

@@ -8,6 +8,10 @@ export interface CashierChecklist {
     comment: Comment;
     signature: Signature;
     date: string;
+
+    startDate?: string;
+    endDate?: string;
+
     listReferenceTypeId?: string;
 
 }

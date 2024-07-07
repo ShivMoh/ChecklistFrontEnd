@@ -1,14 +1,16 @@
 
-<!-- <div class="title">Images</div> -->
-
-<div class="container"
+<div class="container" 
+    *ngIf="instance"
     (fileDropped)="onFileDropped($event)"
-    appDragAndDrop
+   
     (stateStyleEmitter)="updateStateStyle($event)"
     [ngStyle]="stateStyle"
+ 
     
     >
   <input
+    *ngIf="!instance"
+    [disabled]="instance"
     type="file"
     ngModel
     #fileDropRef="ngModel"
@@ -17,19 +19,46 @@
     accept=".pdf,.png,.jpg,.jpeg"
     (change)="fileBrowseHandler($event.target)"
   />
-
-  <!-- <div>ello... {{this.imageUrl}}</div>  -->
-
-  <!-- <h3>Drag and drop your files here</h3>
-  <h3>OR</h3> -->
-  <!-- <label for="fileDropRef">
-    Browse Files
-  </label> -->
+  <img class="image" *ngIf="imageUrl.length > 0" [src]="this.imageUrl" alt="No image uploaded">
+  <div class="image center" *ngIf="imageUrl.length == 0 && !instance">
+    <p>Click to upload image</p>
+    <p>Or</p>
+    <p>Drag and drop image</p>
+  </div>
+  <div class="image center" *ngIf="instance && imageUrl.length == 0">
+    <p>No Image uploaded</p>
+  </div>
 </div>
-<img class="image" *ngIf="imageUrl.length > 0" [src]="this.imageUrl" alt="No image uploaded">
-<div *ngIf="!instance">
-  {{file?.name}}
+
+<div class="container"
+    *ngIf="!instance"
+    (fileDropped)="onFileDropped($event)"
+    appDragAndDrop
+    (stateStyleEmitter)="updateStateStyle($event)"
+    [ngStyle]="stateStyle"
+ 
+    
+    >
+  <input
+    *ngIf="!instance"
+    [disabled]="instance"
+    type="file"
+    ngModel
+    #fileDropRef="ngModel"
+    id="fileDropRef"
+    multiple
+    accept=".pdf,.png,.jpg,.jpeg"
+    (change)="fileBrowseHandler($event.target)"
+  />
+  <img class="image" *ngIf="imageUrl.length > 0" [src]="this.imageUrl" alt="No image uploaded">
+  <div class="image center" *ngIf="imageUrl.length == 0">
+    <p>Click to upload image</p>
+    <p>Or</p>
+    <p>Drag and drop image</p>
+
+  </div>
 </div>
+
 
   <!-- <div class="files-list">
     <div class="single-file" *ngFor="let file of files; let i = index">

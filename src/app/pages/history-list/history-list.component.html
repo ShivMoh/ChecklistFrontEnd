@@ -1,5 +1,5 @@
 <div *ngIf="lists.length > 0" class="lists">
     <div *ngFor="let list of lists" class="list" (click)="select(list.id)">
-        Date created: {{list.date }}
+        Date created: {{list.endDate | date:('fullDate')}} at {{list.endDate | date:('mediumTime')}}
     </div>
 </div>

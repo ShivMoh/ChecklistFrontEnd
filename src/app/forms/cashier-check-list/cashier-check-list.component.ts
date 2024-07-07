@@ -116,8 +116,8 @@ export class CashierCheckListComponent {
       // this.fileService.uploadFile(this.files, list.listReferenceTypeId!).subscribe(files => {
       //   console.log("files...", files)
       // })
-      // form.reset();
-      // location.reload();
+      form.reset();
+      location.reload();
     })
    
   }

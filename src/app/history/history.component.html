@@ -1,4 +1,6 @@
 <div class="lists">
+    <h1 class="title">History List</h1>
+
     <div class="list" *ngFor="let list of lists; index as i" (click)="select(i)">
         <div>{{list}}</div>
     </div>

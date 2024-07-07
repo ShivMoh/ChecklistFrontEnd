@@ -41,15 +41,17 @@ table {
         background-color: transparent;
     }
 
+    td:last-child {
+        justify-content: center;
+    }
+
     td {
         padding: 20px;
         background-color: #eeeeee;
-
         font-size: $basic_font_width;
         font-family: sans-serif;
         display: flex;
         flex-direction: row;
- 
         
         &:hover {
             cursor: pointer;    
@@ -58,9 +60,7 @@ table {
     }
 
     th, td {
-  
-        margin-bottom: 5px;
-        
+        margin-bottom: 5px;       
     }
 }
 
@@ -277,8 +277,6 @@ td:has(input[type=checkbox]) {
                     font-family: sans-serif;
                     font-size: 25px;
                     font-weight: bold;
-          
-    
                 }
         
                 input {
@@ -304,3 +302,6 @@ td:has(input[type=checkbox]) {
     
 }
 
+h1 {
+    font-weight: 500!important;
+}

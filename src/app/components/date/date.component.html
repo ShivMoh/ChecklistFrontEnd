@@ -1,24 +1,33 @@
-<div class="container">
-    <div class="date-container">
-        <div class="start-date">
-            Initiated On: {{startDate}}
+<div class="date-section">
+    <div class="container">
+        <h1 class="title">Date And Time Information</h1>
+        <div class="inner-container">
+            <div class="start-date">
+                <p class="highlight">Initiated On:</p> 
+                <p>{{startDate}}</p>
+            </div>
+            <div class="end-date">
+                <p class="highlight">Completed On:</p>
+                <p>{{endDate}}</p>
+            </div>
         </div>
-        <div class="end-date">
-            Completed On: {{endDate}}
+        
+        <div class="inner-container">
+            <div class="start-time">
+                <p class="highlight">From:</p>
+                <p>{{startTime}}</p>
+            </div>
+        
+            <div class="end-time">
+                <p class="highlight">To: </p>
+                <p>{{endTime}}</p>
+            </div>
+        </div>
+        
+        <div class="calculated-time">
+            <p class="highlight">Time to completion: </p>
+            <p>{{calculatedTimeToCompletion}} seconds</p>
         </div>
     </div>
     
-    <div class="time-container">
-        <div class="start-time">
-            From: {{startTime}}
-        </div>
-    
-        <div class="end-time">
-            To: {{endTime}}
-        </div>
-    </div>
-    
-    <div class="calculated-time">
-        Time to completion: {{calculatedTimeToCompletion}} seconds
-    </div>
 </div>
