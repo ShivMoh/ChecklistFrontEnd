@@ -22,7 +22,7 @@ export class UploadComponent {
   fileUrls: string[] = [];
   @Input() submitted : boolean = false;
   
-  private acceptedFileTypes: string[] = ['application/pdf', 'application/jpg', 'application/jpeg', 'application/png', 'image/jpg']
+  private acceptedFileTypes: string[] = ['image/gif', 'image/png', 'image/jpg', 'image/jpeg']
 
   constructor(private fileService : FileService) {
 
@@ -165,11 +165,12 @@ export class UploadComponent {
   prepareFilesList(files: Array<any>) {
     for (const item of files) {
       console.log(item['type'])
-      // if(!this.acceptedFileTypes.includes(item['type'])) {
-      //   // maybe replace with something nicer
-      //   alert("File Type Not Allowed!");
-      //   return;
-      // }
+      if(!this.acceptedFileTypes.includes(item['type'])) {
+        // maybe replace with something nicer
+        console.log(item['type'])
+        alert("File Type Not Allowed!");
+        return;
+      }
 
       item.progress = 0;
       this.file = item

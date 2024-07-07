@@ -27,7 +27,8 @@ import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { FormsComponent } from './pages/forms/forms.component';
 import { HistoryListComponent } from './pages/history-list/history-list.component';
-import { DateComponent } from './components/date/date.component'
+import { DateComponent } from './components/date/date.component';
+import { LoginComponent } from './pages/login/login.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DateComponent } from './components/date/date.component'
     FormsComponent,
     HistoryListComponent,
     DateComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

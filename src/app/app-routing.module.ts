@@ -8,10 +8,13 @@ import { CashierCheckListComponent } from './forms/cashier-check-list/cashier-ch
 import { StockOpeningCheckListComponent } from './forms/stock-opening-check-list/stock-opening-check-list.component';
 import { FormsComponent } from './pages/forms/forms.component';
 import { HistoryListComponent } from './pages/history-list/history-list.component';
+import { adminGuard } from './guards/admin.guard';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: 'main-table', component: MainTableComponent},
-  { path : 'history', component: HistoryComponent},
+  { path : 'history', component: HistoryComponent, canActivate: [adminGuard]},
+  { path : 'login', component: LoginComponent},
   { path: 'kitchen-check-list', component: KitchenCheckListComponent},
   { path: 'service-check-list', component: ServiceCheckListComponent},
   { path: 'cashier-check-list', component: CashierCheckListComponent},
@@ -22,7 +25,7 @@ const routes: Routes = [
   { path: 'service-list/:id', component: ServiceCheckListComponent},
   { path: 'cashier-list/:id', component: CashierCheckListComponent},
   { path: 'stock-opening-list/:id', component: StockOpeningCheckListComponent},
-
+  
   { path : '', redirectTo: '/forms', pathMatch: 'full'},
 
 ];
