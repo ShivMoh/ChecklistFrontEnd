@@ -9,9 +9,19 @@ $sans-serif-font: "sans-serif";
 $basic_font_width: 16px;
 
 form {
-    margin-right: 200px;
-    margin-left: 200px;
-    margin-bottom: 100px;
+
+    @media (min-width: 760px) {
+        margin-right: 50px;
+        margin-left: 50px;
+        margin-bottom: 100px;    
+    }
+
+    @media (min-width: 1336px) {
+        margin-right: 200px;
+        margin-left: 200px;
+        margin-bottom: 100px;  
+      }
+    
 
 }
 table {
@@ -33,7 +43,21 @@ table {
         height: fit-content;
         width: 100%;
         display: grid;
-        grid-template-columns: 60% 20% 20%;
+
+     
+
+
+        @media (min-width: 760px) {
+            grid-template-columns: 40% 20% 40%;            
+        }
+
+        @media (min-width: 1336px) {
+            grid-template-columns: 60% 20% 20%;   
+            
+        }
+
+      
+
         column-gap: 5px;
     }
 
