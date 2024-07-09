@@ -19,19 +19,19 @@ export class FileService {
     formData.append("label", label!);
 
     // console.log(listId);
-    return this.http.post<any[]>("http://localhost:5264/api/File/UploadFile", formData);
+    return this.http.post<any[]>("http://192.168.192.10/api/File/UploadFile", formData);
   }
 
   getFile(listId : string) : Observable<Blob> {
-    return this.http.get<Blob>(`http://localhost:5264/api/File/GetFile?filePath=${listId}`, {responseType : 'blob' as 'json'});
+    return this.http.get<Blob>(`http://192.168.192.10/api/File/GetFile?filePath=${listId}`, {responseType : 'blob' as 'json'});
   }
   
   getAllFileTypeForList(listId : string) : Observable<FileType[]> {
-    return this.http.get<FileType[]>(`http://localhost:5264/api/File/GetAllFileTypeForList?listReferenceTypeId=${listId}`);
+    return this.http.get<FileType[]>(`http://192.168.192.10/api/File/GetAllFileTypeForList?listReferenceTypeId=${listId}`);
   }
 
   getAllFileTypeForAttribute(fileContainerTypeId : string) : Observable<FileType[]> {
-    return this.http.get<FileType[]>(`http://localhost:5264/api/File/GetAllFileTypeForAttribute?fileContainerTypeId=${fileContainerTypeId}`);
+    return this.http.get<FileType[]>(`http://192.168.192.10/api/File/GetAllFileTypeForAttribute?fileContainerTypeId=${fileContainerTypeId}`);
   }
 
 }

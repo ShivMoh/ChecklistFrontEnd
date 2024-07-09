@@ -11,35 +11,35 @@ export class CashierCheckListService {
   constructor(private http: HttpClient) { }
 
   createList(cashierCheckList : CashierChecklist) : Observable<CashierChecklist> {
-    return this.http.post<CashierChecklist>("http://localhost:5264/api/CashierList/Create", cashierCheckList);
+    return this.http.post<CashierChecklist>("http://192.168.192.10/api/CashierList/Create", cashierCheckList);
   }
 
   getAllLists() : Observable<CashierChecklist[]> {
-    return this.http.post<CashierChecklist[]>("http://localhost:5264/api/CashierList/GetAllLists", {});
+    return this.http.post<CashierChecklist[]>("http://192.168.192.10/api/CashierList/GetAllLists", {});
   }
 
 
   getListById(id: string) : Observable<CashierChecklist> {
-    return this.http.get<CashierChecklist>(`http://localhost:5264/api/CashierList/GetListById?id=${id}`);
+    return this.http.get<CashierChecklist>(`http://192.168.192.10/api/CashierList/GetListById?id=${id}`);
   }
 
   createBlankList() : Observable<CashierChecklist> {
-    return this.http.get<CashierChecklist>("http://localhost:5264/api/CashierList/CreateBlank");
+    return this.http.get<CashierChecklist>("http://192.168.192.10/api/CashierList/CreateBlank");
   }
 
   checkIfBlankListExists() : Observable<boolean> {
-    return this.http.get<boolean>("http://localhost:5264/api/CashierList/CheckIfBlankFormExists");
+    return this.http.get<boolean>("http://192.168.192.10/api/CashierList/CheckIfBlankFormExists");
   }
 
   getUnsubmittedForm() : Observable<CashierChecklist> {
-    return this.http.get<CashierChecklist>("http://localhost:5264/api/CashierList/GetUnsubmittedForm");
+    return this.http.get<CashierChecklist>("http://192.168.192.10/api/CashierList/GetUnsubmittedForm");
   }
 
   submitForm(CashierChecklist : CashierChecklist) : Observable<CashierChecklist> {
-    return this.http.post<CashierChecklist>("http://localhost:5264/api/CashierList/SubmitForm", CashierChecklist);
+    return this.http.post<CashierChecklist>("http://192.168.192.10/api/CashierList/SubmitForm", CashierChecklist);
   }
 
   saveCurrentState(CashierChecklist : CashierChecklist) : Observable<CashierChecklist> {
-    return this.http.post<CashierChecklist>("http://localhost:5264/api/CashierList/SaveCurrentState", CashierChecklist);
+    return this.http.post<CashierChecklist>("http://192.168.192.10/api/CashierList/SaveCurrentState", CashierChecklist);
   }
 }

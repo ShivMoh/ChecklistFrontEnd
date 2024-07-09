@@ -10,35 +10,35 @@ export class StockOpeningCheckListService {
   constructor(private http: HttpClient) { }
 
   createList(stockOpeningList : StockOpeningCheckList) : Observable<StockOpeningCheckList> {
-    return this.http.post<StockOpeningCheckList>("http://localhost:5264/api/StockList/Create", stockOpeningList);
+    return this.http.post<StockOpeningCheckList>("http://192.168.192.10/api/StockList/Create", stockOpeningList);
   }
 
   getAllLists() : Observable<StockOpeningCheckList[]> {
-    return this.http.post<StockOpeningCheckList[]>("http://localhost:5264/api/StockList/GetAllLists", {});
+    return this.http.post<StockOpeningCheckList[]>("http://192.168.192.10/api/StockList/GetAllLists", {});
   }
 
   getListById(id: string) : Observable<StockOpeningCheckList> {
-    return this.http.get<StockOpeningCheckList>(`http://localhost:5264/api/StockList/GetListById?id=${id}`);
+    return this.http.get<StockOpeningCheckList>(`http://192.168.192.10/api/StockList/GetListById?id=${id}`);
   }
 
   createBlankList() : Observable<StockOpeningCheckList> {
-    return this.http.get<StockOpeningCheckList>("http://localhost:5264/api/StockList/CreateBlank");
+    return this.http.get<StockOpeningCheckList>("http://192.168.192.10/api/StockList/CreateBlank");
   }
 
   checkIfBlankListExists() : Observable<boolean> {
-    return this.http.get<boolean>("http://localhost:5264/api/StockList/CheckIfBlankFormExists");
+    return this.http.get<boolean>("http://192.168.192.10/api/StockList/CheckIfBlankFormExists");
   }
 
   getUnsubmittedForm() : Observable<StockOpeningCheckList> {
-    return this.http.get<StockOpeningCheckList>("http://localhost:5264/api/StockList/GetUnsubmittedForm");
+    return this.http.get<StockOpeningCheckList>("http://192.168.192.10/api/StockList/GetUnsubmittedForm");
   }
 
   submitForm(StockOpeningCheckList : StockOpeningCheckList) : Observable<StockOpeningCheckList> {
-    return this.http.post<StockOpeningCheckList>("http://localhost:5264/api/StockList/SubmitForm", StockOpeningCheckList);
+    return this.http.post<StockOpeningCheckList>("http://192.168.192.10/api/StockList/SubmitForm", StockOpeningCheckList);
   }
 
   saveCurrentState(StockOpeningCheckList : StockOpeningCheckList) : Observable<StockOpeningCheckList> {
-    return this.http.post<StockOpeningCheckList>("http://localhost:5264/api/StockList/SaveCurrentState", StockOpeningCheckList);
+    return this.http.post<StockOpeningCheckList>("http://192.168.192.10/api/StockList/SaveCurrentState", StockOpeningCheckList);
   }
 
 }

@@ -1,5 +1,43 @@
-<div *ngIf="lists.length > 0" class="lists">
-    <div *ngFor="let list of lists" class="list" (click)="select(list.id)">
+
+
+<div class="lists">
+    <div class="filter-container">
+        <div class="filter-component">
+            <select class="selector" name="month" (change)="filter($event)">
+                <option 
+                    *ngFor="let month of months; 
+                    index as index;" 
+                    [value]="index"
+                    
+                    >{{month}}</option>
+            </select>
+            
+        </div>
+        <div class="filter-component">
+    
+            <select class="selector" name="day" (change)="filter($event)">
+                <option 
+                    *ngFor="let day of days; 
+                    index as index;" 
+                    [value]="index"
+                    
+                    >{{day}}</option>
+            </select>
+        </div>
+        <div class="filter-component">
+            <button class="clear" (click)="clear()">Clear Search</button>
+        </div>
+    
+    </div>
+    <div  *ngFor="let list of lists" class="list" (click)="select(list.id)">
         Date created: {{list.endDate | date:('fullDate')}} at {{list.endDate | date:('mediumTime')}}
     </div>
+
+    <div class="pagination-container">
+        <mat-icon (click)="decrementIndex()" *ngIf="canGoBack()">arrow_left</mat-icon>
+        <span class="current-page">{{paginationIndex + 1}}</span>
+        <mat-icon (click)="incrementIndex()" *ngIf="canGoForward()">arrow_right</mat-icon>
+    </div>
+    
 </div>
+

@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'cashier-check-list', component: CashierCheckListComponent},
   { path: 'stock-opening-check-list', component: StockOpeningCheckListComponent},
   { path: 'forms', component: FormsComponent},
-  { path: 'history-list/:id', component: HistoryListComponent},
+  { path: 'history-list/:index', component: HistoryListComponent},
   { path: 'kitchen-list/:id', component: KitchenCheckListComponent},
   { path: 'service-list/:id', component: ServiceCheckListComponent},
   { path: 'cashier-list/:id', component: CashierCheckListComponent},

@@ -112,6 +112,8 @@ export class KitchenCheckListComponent {
       }
     })
   }
+
+  
   
 
   getList() {
