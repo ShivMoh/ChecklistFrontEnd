@@ -61,8 +61,11 @@ export class HistoryListComponent {
   }
 
   ngOnInit() {
-    this.index = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.index = Number(this.activatedRoute.snapshot.paramMap.get('index'));
+
     this.fillLists();
+
+  
   }
 
   getNthList(lists : any[], number : number = 10) {
