@@ -10,11 +10,11 @@ export class KitchenCheckListService {
   constructor(private http: HttpClient) { }
 
   createList(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
-    return this.http.post<KitchenCheckList>("http://192.168.10.148:4000//api/KitchenList/Create", kitchenCheckList);
+    return this.http.post<KitchenCheckList>("http://192.168.10.148:4000/api/KitchenList/Create", kitchenCheckList);
   }
 
   createBlankList() : Observable<KitchenCheckList> {
-    return this.http.get<KitchenCheckList>("http://192.168.10.148:4000//api/KitchenList/CreateBlank");
+    return this.http.get<KitchenCheckList>("http://192.168.10.148:4000/api/KitchenList/CreateBlank");
   }
 
   checkIfBlankListExists() : Observable<boolean> {
