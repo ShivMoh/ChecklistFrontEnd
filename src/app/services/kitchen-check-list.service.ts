@@ -10,34 +10,34 @@ export class KitchenCheckListService {
   constructor(private http: HttpClient) { }
 
   createList(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
-    return this.http.post<KitchenCheckList>("http://192.168.10.145//api/KitchenList/Create", kitchenCheckList);
+    return this.http.post<KitchenCheckList>("http://192.168.10.148:4000//api/KitchenList/Create", kitchenCheckList);
   }
 
   createBlankList() : Observable<KitchenCheckList> {
-    return this.http.get<KitchenCheckList>("http://192.168.10.145//api/KitchenList/CreateBlank");
+    return this.http.get<KitchenCheckList>("http://192.168.10.148:4000//api/KitchenList/CreateBlank");
   }
 
   checkIfBlankListExists() : Observable<boolean> {
-    return this.http.get<boolean>("http://192.168.10.145/api/KitchenList/CheckIfBlankFormExists");
+    return this.http.get<boolean>("http://192.168.10.148:4000/api/KitchenList/CheckIfBlankFormExists");
   }
 
   getUnsubmittedForm() : Observable<KitchenCheckList> {
-    return this.http.get<KitchenCheckList>("http://192.168.10.145/api/KitchenList/GetUnsubmittedForm");
+    return this.http.get<KitchenCheckList>("http://192.168.10.148:4000/api/KitchenList/GetUnsubmittedForm");
   }
 
   submitForm(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
-    return this.http.post<KitchenCheckList>("http://192.168.10.145/api/KitchenList/SubmitForm", kitchenCheckList);
+    return this.http.post<KitchenCheckList>("http://192.168.10.148:4000/api/KitchenList/SubmitForm", kitchenCheckList);
   }
 
   saveCurrentState(kitchenCheckList : KitchenCheckList) : Observable<KitchenCheckList> {
-    return this.http.post<KitchenCheckList>("http://192.168.10.145/api/KitchenList/SaveCurrentState", kitchenCheckList);
+    return this.http.post<KitchenCheckList>("http://192.168.10.148:4000/api/KitchenList/SaveCurrentState", kitchenCheckList);
   }
 
   getAllLists() : Observable<KitchenCheckList[]> {
-    return this.http.post<KitchenCheckList[]>("http://192.168.10.145/api/KitchenList/GetAllLists", {});
+    return this.http.post<KitchenCheckList[]>("http://192.168.10.148:4000/api/KitchenList/GetAllLists", {});
   }
 
   getListById(id: string) : Observable<KitchenCheckList> {
-    return this.http.get<KitchenCheckList>(`http://192.168.10.145/api/KitchenList/GetListById?id=${id}`);
+    return this.http.get<KitchenCheckList>(`http://192.168.10.148:4000/api/KitchenList/GetListById?id=${id}`);
   }
 }
